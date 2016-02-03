@@ -1,0 +1,156 @@
+{% extends "pages/richtextpage.html" %}
+{% load pages_tags mezzanine_tags i18n staticfiles %}
+
+{% block extra_css %}
+<style type="text/css">
+    #carousel{
+        position: relative;
+        z-index: 5;
+        padding-bottom: 40px;
+        background-color: white
+    }
+    .carousel-inner{
+        height: 400px;
+    }
+    .carousel-inner .item img{
+        width: 100%;
+    }
+    .carousel-control .fa{
+        position: absolute;
+        top: 48%;
+    }
+
+    #boats{
+        position: relative;
+        bottom: 100px;
+        height: 280px;
+        background-color: transparent;
+    }
+    .boat_container{
+        position: absolute;
+        bottom: 0;
+        z-index: 9;
+        padding: 4px 10px;
+        overflow: hidden;
+        height: 130px;
+        width: 134px;
+        border: 2px solid white;
+        background-color: white;
+        -moz-transition: height 0.15s ease-out;
+        -webkit-transition: height 0.15s ease-out;
+        -o-transition: height 0.15s ease-out;
+        transition: height 0.15s ease-out;
+    }.boat_container:hover{
+        border-color: rgb(240,240,240);
+        height: 275px;
+    }
+    .boat_box{
+        position: absolute;
+        bottom: 0;
+        height: 220px;
+        width: 110px;
+        overflow: hidden;
+        background-color: white;
+        border-radius: 4px 4px 0 0;
+    }.boat_box img{
+        width: 100%;
+        box-shadow: 0 0 2px 1px rgba(0,0,0,.3);
+    }
+
+@media screen and (min-width: 1350px){
+    #boats{
+        bottom: 100px;
+        height: 280px;
+    }
+    .boat_container{
+        padding: 10px;
+        height: 130px;
+        width: 174px;
+    }.boat_container:hover{
+        height: 300px;
+    }
+    .boat_box{
+        height: 250px;
+        width: 150px;
+    }
+}
+
+</style>
+{% endblock %}
+
+
+{% block main %}
+    <div id='carousel'>
+        <div id="highlights_carousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                {% for element in highlights %}
+                    <li data-target="#highlights_carousel" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
+                {% endfor %}
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                {% for element in highlights %}
+                    <div class="item {% if forloop.counter0 == 0 %}active{% endif %}">
+                        {# <img src="{{ MEDIA_URL }}boat/illustration/{{ element.featured_image }}" alt="illustration highlight {{ element.title }}"> #}
+                        <img src='{{ MEDIA_URL }}{% thumbnail element.featured_image 1200 400 %}' alt='illustration highlight {{ element.title }}' />
+                        <div class="carousel-caption">
+                            {{ element.headline }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#highlights_carousel" role="button" data-slide="prev">
+                <span class="fa fa-lg fa-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#highlights_carousel" role="button" data-slide="next">
+                <span class="fa fa-lg fa-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-12'>
+            {# {% block breadcrumbs %} #}
+                {# <ul class="breadcrumb"> #}
+                {# {% spaceless %} #}
+                {# {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %} #}
+                {# {% endspaceless %} #}
+                {# </ul> #}
+            {# {% endblock %} #}
+            </div>
+        </div>
+    </div>
+    {% block title %}{% endblock %}
+
+    <div id='boats'>
+        {% for Boat in Boats %}
+            <div class='boat_container'>
+                <h5 class='text-center'>Découvrir</h5>
+                <div class='boat_box text-center'>
+                    <img src="{{ MEDIA_URL }}{% thumbnail Boat.featured_image 150 200 %}" alt='plan coupe bateau' />
+                    <h4>{{ Boat.title }}</h4>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

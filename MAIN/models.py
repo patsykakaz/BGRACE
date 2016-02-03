@@ -5,9 +5,12 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 # from django.contrib.sites.models import *
+from django_countries.fields import CountryField
 
 from mezzanine.pages.models import Page
-from mezzanine.core.fields import RichTextField
+from mezzanine.core.fields import RichTextField, FileField
+from mezzanine.utils.models import upload_to
+
 
 class HiddenPage(Page):
     # excluded from Nav/Footer
@@ -17,15 +20,21 @@ class HiddenPage(Page):
     def save(self, *args, **kwargs):
         # in_menus empty -> exclude from content_trees
         self.in_menus = []
-        super(Publicite, self).save(*args, **kwargs)
+        super(HiddenPage, self).save(*args, **kwargs)
 
-class Boat(HiddenPage):
+class Boat(Page):
+    highlight = models.NullBooleanField(default=False,null=True, blank=True)
     headline = models.CharField(max_length=255, null=True, blank=True)
-    illustration = models.ImageField(upload_to=settings.MEDIA_ROOT
-                                        +'/boat/illustration', null=False)
-    logo_boat = models.ImageField(upload_to=settings.MEDIA_ROOT
-                                        +'/boat/logo_boat', null=False)
-    documentation = models.FileField(upload_to='boat/doc/')
+    # featured_image = FileBrowseField("Image", max_length=255, directory="/boat/illustration'", extensions=[".jpg",".jpeg",".png",], null=False)
+    featured_image = FileField(verbose_name=_("Image en Situation"),
+        upload_to=upload_to("MAIN.Boat", "Boat"),
+        format="Image", max_length=255, null=True, blank=False)
+    sidecut_image = FileField(verbose_name=_("Plan Coupe"),
+        upload_to=upload_to("MAIN.Boat", "Boat"),
+        format="Image", max_length=255, null=True, blank=False)
+    logo = FileField(verbose_name=_("Logo Bateau"),
+        upload_to=upload_to("MAIN.Boat", "Boat"),
+        format="Image", max_length=255, null=True, blank=True)
     presentation = RichTextField(_("Presentation"))
 
     architecte = models.CharField(max_length=255, 
@@ -59,6 +68,13 @@ class Boat(HiddenPage):
     association_classe = models.CharField(max_length=255, 
                                     null=True, blank=True)
 
+class BoatGalery(models.Model):
+    Boat = models.ForeignKey("Boat")
+    image = FileField(verbose_name=_("Image"),
+        upload_to=upload_to("MAIN.Boat", "Boat"),
+        format="Image", max_length=255, null=True, blank=False)
+    description = models.CharField(max_length=255, null=True, blank=True)
+
 class BoatDocumentation(models.Model):
     Boat = models.ForeignKey("Boat")
     fileTarget = models.FileField(upload_to='boat/doc/')
@@ -85,10 +101,24 @@ class BoatPalmares(models.Model):
     resultat = models.CharField(max_length=255)
 
 
+class Distributeur(Page):
+    illustration = models.ImageField(upload_to=settings.MEDIA_ROOT
+                                        +'/distributeur/illustration', null=False)
+    logo = models.ImageField(upload_to=settings.MEDIA_ROOT
+                                        +'/distributeur/logo_distributeur', null=False)
+    pays = CountryField()
+    bassin_navigation = models.CharField(max_length=255, 
+                                    null=True, blank=True)
+    presentation = RichTextField(_("Presentation"))
 
-
-
-
+class Contact_Distributeur(models.Model):
+    Distributeur = models.ForeignKey("Distributeur")
+    nom = models.CharField(max_length=255)
+    adresse = models.CharField(max_length=255)
+    tel = models.CharField(max_length=255)
+    website = models.URLField()
+    mail = models.EmailField()
+    horaires = models.CharField(max_length=255)
 
 
 

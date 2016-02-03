@@ -19,13 +19,19 @@ class MyBlogPostAdmin(BlogPostAdmin):
 
 BoatAdmin_extra_fieldsets = (
     (None,
-        {'fields': ('highlight','featured_image','logo','headline',
-                    'presentation','architecte','longueur_HT',
-                    'longueur_coque','largeur','tirant_eau','deplacement',
-                    'leste','surface_voile','spi','motorisation',
-                    'capacite_carburant','capacite_eau','cabines',
-                    'certification_CE','association_classe'
-                    )
+        {'fields': ('highlight','featured_image',
+                    'sidecut_image',
+                    'logo','headline',
+                    'presentation','architecte',
+                    'longueur_HT',
+                    'longueur_coque','largeur',
+                    'tirant_eau','deplacement',
+                    'leste','surface_voile','spi',
+                    'motorisation','capacite_carburant',
+                    'capacite_eau','cabines',
+                    'certification_CE',
+                    'association_classe'
+                )
         }
     ),
 )

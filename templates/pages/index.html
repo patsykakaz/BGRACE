@@ -10,10 +10,12 @@
     $(document).ready(function(){
 
         $('.boat_container').mouseover(function(){
+            $('.blogPost_box').addClass('opacitize');
             $('.boat_container').addClass('opacitize');
             $(this).removeClass('opacitize');
         });
         $('.boat_container').mouseout(function(){
+            $('.blogPost_box').removeClass('opacitize');
             $('.boat_container').removeClass('opacitize');
         });
 

@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+body{
+    padding: 0;
+}
+
+
+.navbar{
+    margin: 0;
+    font-family: 'Cabin', sans-serif;
+}
+.navbar-default{
+    background: white;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
+    color: #d0031c;
+    background-color: white;
+}
+.nav > li > a.dropdown-toggle:hover{
+    color: #d0031c;
+    background-color: white;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+    background: none;
+    background-color: #d0031c;
+    color: white;
+}
+
+
+footer{
+    min-height: 300px;
+    background-color: white;
+}

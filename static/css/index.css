@@ -1,0 +1,156 @@
+    #carousel{
+        position: relative;
+        z-index: 5;
+        padding-bottom: 40px;
+        opacity: .75;
+        background-color: white;
+        -moz-transition: all 1s ease-out;
+        -webkit-transition: all 1s ease-out;
+        -o-transition: all 1s ease-out;
+        transition: all 1s ease-out;
+        -webkit-transition-delay: Os;
+        -moz-transition-delay: Os;
+        -o-transition-delay: Os;
+        transition-delay: Os;
+    }#carousel:hover{
+        opacity: .9;
+        -webkit-transition-delay: .66s;
+        -moz-transition-delay: .66s;
+        -o-transition-delay: .66s;
+        transition-delay: .66s;
+    }
+    .carousel-inner{
+        height: 400px;
+    }
+    .carousel-inner .item img{
+        width: 100%;
+    }
+    .carousel-control .fa{
+        position: absolute;
+        top: 48%;
+    }
+
+    #boats{
+        position: relative;
+        bottom: 100px;
+        height: 280px;
+        background-color: transparent;
+    }
+    .boat_container{
+        position: absolute;
+        bottom: 0;
+        z-index: 9;
+        padding: 4px 10px;
+        overflow: hidden;
+        height: 130px;
+        width: 130px;
+        border-radius: 4px 4px 0 0;
+        background-color: white;
+        -moz-transition: all 0.15s ease-out;
+        -webkit-transition: all 0.15s ease-out;
+        -o-transition: all 0.15s ease-out;
+        transition: all 0.15s ease-out;
+        -webkit-transition-delay: .15s;
+        -moz-transition-delay: .15s;
+        -o-transition-delay: .15s;
+        transition-delay: .15s;
+    }.boat_container:hover{
+        box-shadow: 0 0 3px 1px rgba(0,0,0,.1);
+        height: 275px;
+    }.boat_container.opacitize{
+        opacity: .5;
+        -webkit-transition-delay: 0s;
+        -moz-transition-delay: 0s;
+        -o-transition-delay: 0s;
+        transition-delay: 0s;
+    }
+    .boat_box{
+        position: absolute;
+        bottom: 0;
+        height: 220px;
+        width: 110px;
+        overflow: hidden;
+        background-color: white;
+    }.boat_box img{
+        width: 100%;
+    }
+    .boat_title{
+        letter-spacing: 3px; 
+        font-size: 15px;
+    }
+
+    #blogPosts{
+        min-height: 200px;
+    }
+    .blogPost_box{
+        position: relative;
+        overflow: hidden;
+        -moz-transition: all 0.15s ease-out;
+        -webkit-transition: all 0.15s ease-out;
+        -o-transition: all 0.15s ease-out;
+        transition: all 0.15s ease-out;
+        -webkit-transition-delay: .15s;
+        -moz-transition-delay: .15s;
+        -o-transition-delay: .15s;
+        transition-delay: .15s;
+    }
+    .blogPost_box.opacitize{
+        opacity: .5;
+        -webkit-transition-delay: 0s;
+        -moz-transition-delay: 0s;
+        -o-transition-delay: 0s;
+        transition-delay: 0s;
+    }
+    .blogPost_box img{
+        width: 100%;
+        -moz-transition: all 0.3s ease-out;
+        -webkit-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+        -webkit-transition-delay: .15s;
+        -moz-transition-delay: .15s;
+        -o-transition-delay: .15s;
+        transition-delay: .15s;
+    }.blogPost_box img.scale_down{
+        -webkit-transform: scale(.9);
+        -moz-transform: scale(.9);
+        -o-transform: scale(.9);
+        -ms-transform: scale(.9);
+        transform: scale(.9);
+        -moz-transition: all 0.15s ease-out;
+        -webkit-transition: all 0.15s ease-out;
+        -o-transition: all 0.15s ease-out;
+        transition: all 0.15s ease-out;
+        -webkit-transition-delay: .33s;
+        -moz-transition-delay: .33s;
+        -o-transition-delay: .33s;
+        transition-delay: .33s;
+    }
+    .blogPost_caption{
+        position: absolute;
+        top: 100%;
+        left: 33%;
+        width: 33%;
+        height: 50%;
+        border-radius: 300px;
+        background-color: rgba(255,255,255,1);
+        border: 10px solid #d0031c;
+    }
+
+@media screen and (min-width: 1350px){
+    #boats{
+        bottom: 100px;
+        height: 280px;
+    }
+    .boat_container{
+        padding: 10px;
+        height: 130px;
+        width: 170px;
+    }.boat_container:hover{
+        height: 300px;
+    }
+    .boat_box{
+        height: 250px;
+        width: 150px;
+    }
+}

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+h1,h2,h3,h4,h5,h6{
+    color: #d0031c;
+    font-family: 'Cabin', sans-serif;
+}
+
+#logo{
+    height: 100px;
+    text-align: center;
+}#logo img{
+    height: 100%;
+    padding: 20px 20px 10px 20px;
+}
+.logo_wing{
+    display: inline-block;
+    width: 200px;
+    height: 5px;
+    border-bottom: 1px solid rgb(220,220,220);
+}

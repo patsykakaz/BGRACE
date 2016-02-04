@@ -19,12 +19,6 @@
             $('.boat_container').removeClass('opacitize');
         });
 
-        $('.blogPost_box img').mouseover(function(){
-            $('.blogPost_box img').not($(this)).addClass('scale_down');
-        });
-        $('.blogPost_box img').mouseout(function(){
-            $('.blogPost_box img').removeClass('scale_down');
-        });
     });
 </script>
 {% endblock %}
@@ -90,13 +84,23 @@
         {% endfor %}
     </div>
 
+    <div class='container'>
+        <div class='col-md-4 col-md-offset-4 separator'></div>
+    </div>
+
     <div id='blogPosts' class='container'>
         {% for element in last_blogPosts %}
             <div class='col-md-4'>
                 <div class='blogPost_box'>
                     <img src='{{ MEDIA_URL }}{% thumbnail element.featured_image 300 200 %}' />
                     <div class='blogPost_caption'>
-                        <h5>{{ element.title }}</h5>
+                        <h4 class='caption_title'>{{ element.title }}</h4>
+                        <p>
+                            <i class='fa fa-caret-right'></i>
+                            {{ element.baseline }}
+                        </p>
+                        <div class='wing left_wing'></div>
+                        <div class='wing right_wing'></div>
                     </div>
                 </div>
             </div>

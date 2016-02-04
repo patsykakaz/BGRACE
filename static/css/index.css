@@ -81,10 +81,13 @@
 
     #blogPosts{
         min-height: 200px;
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
     .blogPost_box{
         position: relative;
         overflow: hidden;
+        /*border-bottom: 3px solid white;*/
         -moz-transition: all 0.15s ease-out;
         -webkit-transition: all 0.15s ease-out;
         -o-transition: all 0.15s ease-out;
@@ -93,6 +96,8 @@
         -moz-transition-delay: .15s;
         -o-transition-delay: .15s;
         transition-delay: .15s;
+    }.blogPost_box:hover{
+        border-color: #d0031c;
     }
     .blogPost_box.opacitize{
         opacity: .5;
@@ -111,30 +116,29 @@
         -moz-transition-delay: .15s;
         -o-transition-delay: .15s;
         transition-delay: .15s;
-    }.blogPost_box img.scale_down{
-        -webkit-transform: scale(.9);
-        -moz-transform: scale(.9);
-        -o-transform: scale(.9);
-        -ms-transform: scale(.9);
-        transform: scale(.9);
-        -moz-transition: all 0.15s ease-out;
-        -webkit-transition: all 0.15s ease-out;
-        -o-transition: all 0.15s ease-out;
-        transition: all 0.15s ease-out;
-        -webkit-transition-delay: .33s;
-        -moz-transition-delay: .33s;
-        -o-transition-delay: .33s;
-        transition-delay: .33s;
     }
     .blogPost_caption{
+        color: rgb(50,50,60);
+    }
+    .blogPost_caption .caption_title{
+        margin: 10px 0 5px 0;
+    }
+    .blogPost_caption .wing{
         position: absolute;
-        top: 100%;
-        left: 33%;
-        width: 33%;
-        height: 50%;
-        border-radius: 300px;
-        background-color: rgba(255,255,255,1);
-        border: 10px solid #d0031c;
+        width: 0%;
+        bottom: 0;
+        border-bottom: 2px solid #d0031c;
+        -moz-transition: all 0.3s ease-out;
+        -webkit-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+    }.blogPost_caption .left_wing{
+        right: 50%;
+    }.blogPost_caption .right_wing{
+        left: 50%;
+    }
+    .blogPost_box:hover .blogPost_caption .wing{
+        width: 50%;
     }
 
 @media screen and (min-width: 1350px){

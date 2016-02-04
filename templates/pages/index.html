@@ -2,82 +2,30 @@
 {% load pages_tags mezzanine_tags i18n staticfiles %}
 
 {% block extra_css %}
-<style type="text/css">
-    #carousel{
-        position: relative;
-        z-index: 5;
-        padding-bottom: 40px;
-        background-color: white
-    }
-    .carousel-inner{
-        height: 400px;
-    }
-    .carousel-inner .item img{
-        width: 100%;
-    }
-    .carousel-control .fa{
-        position: absolute;
-        top: 48%;
-    }
-
-    #boats{
-        position: relative;
-        bottom: 100px;
-        height: 280px;
-        background-color: transparent;
-    }
-    .boat_container{
-        position: absolute;
-        bottom: 0;
-        z-index: 9;
-        padding: 4px 10px;
-        overflow: hidden;
-        height: 130px;
-        width: 134px;
-        border: 2px solid white;
-        background-color: white;
-        -moz-transition: height 0.15s ease-out;
-        -webkit-transition: height 0.15s ease-out;
-        -o-transition: height 0.15s ease-out;
-        transition: height 0.15s ease-out;
-    }.boat_container:hover{
-        border-color: rgb(240,240,240);
-        height: 275px;
-    }
-    .boat_box{
-        position: absolute;
-        bottom: 0;
-        height: 220px;
-        width: 110px;
-        overflow: hidden;
-        background-color: white;
-        border-radius: 4px 4px 0 0;
-    }.boat_box img{
-        width: 100%;
-        box-shadow: 0 0 2px 1px rgba(0,0,0,.3);
-    }
-
-@media screen and (min-width: 1350px){
-    #boats{
-        bottom: 100px;
-        height: 280px;
-    }
-    .boat_container{
-        padding: 10px;
-        height: 130px;
-        width: 174px;
-    }.boat_container:hover{
-        height: 300px;
-    }
-    .boat_box{
-        height: 250px;
-        width: 150px;
-    }
-}
-
-</style>
+<link rel="stylesheet" href="{% static "css/index.css" %}">
 {% endblock %}
 
+{% block extra_js %}
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('.boat_container').mouseover(function(){
+            $('.boat_container').addClass('opacitize');
+            $(this).removeClass('opacitize');
+        });
+        $('.boat_container').mouseout(function(){
+            $('.boat_container').removeClass('opacitize');
+        });
+
+        $('.blogPost_box img').mouseover(function(){
+            $('.blogPost_box img').not($(this)).addClass('scale_down');
+        });
+        $('.blogPost_box img').mouseout(function(){
+            $('.blogPost_box img').removeClass('scale_down');
+        });
+    });
+</script>
+{% endblock %}
 
 {% block main %}
     <div id='carousel'>
@@ -134,7 +82,20 @@
                 <h5 class='text-center'>Découvrir</h5>
                 <div class='boat_box text-center'>
                     <img src="{{ MEDIA_URL }}{% thumbnail Boat.sidecut_image 150 200 %}" alt='plan coupe bateau' />
-                    <h4>{{ Boat.title }}</h4>
+                    <h4 class='boat_title'>{{ Boat.title }}</h4>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id='blogPosts' class='container'>
+        {% for element in last_blogPosts %}
+            <div class='col-md-4'>
+                <div class='blogPost_box'>
+                    <img src='{{ MEDIA_URL }}{% thumbnail element.featured_image 300 200 %}' />
+                    <div class='blogPost_caption'>
+                        <h5>{{ element.title }}</h5>
+                    </div>
                 </div>
             </div>
         {% endfor %}

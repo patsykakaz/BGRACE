@@ -37,10 +37,12 @@
             <div class="carousel-inner" role="listbox">
                 {% for element in highlights %}
                     <div class="item {% if forloop.counter0 == 0 %}active{% endif %}">
-                        {# <img src="{{ MEDIA_URL }}boat/illustration/{{ element.featured_image }}" alt="illustration highlight {{ element.title }}"> #}
                         <img src='{{ MEDIA_URL }}{% thumbnail element.featured_image 1200 400 %}' alt='illustration highlight {{ element.title }}' />
                         <div class="carousel-caption">
-                            {{ element.headline }}
+                            <h3 class='carousel_caption_title'>
+                                <i class='fa fa-chevron-right'></i> {{ element.title|upper }}
+                            </h3>
+                            <p> {{ element.headline }} </p>
                         </div>
                     </div>
                 {% endfor %}
@@ -94,10 +96,12 @@
                 <div class='blogPost_box'>
                     <img src='{{ MEDIA_URL }}{% thumbnail element.featured_image 300 200 %}' />
                     <div class='blogPost_caption'>
-                        <h4 class='caption_title'>{{ element.title }}</h4>
-                        <p>
+                        <h4 class='caption_title'>
                             <i class='fa fa-caret-right'></i>
-                            {{ element.baseline }}
+                            {{ element.title }}
+                        </h4>
+                        <p>
+                            {# {{ element.baseline }} #}
                         </p>
                         <div class='wing left_wing'></div>
                         <div class='wing right_wing'></div>
@@ -106,6 +110,11 @@
             </div>
         {% endfor %}
     </div>
+
+    <div id='distributeurs'>
+        DISTRIBUTEURS
+    </div>
+
 {% endblock %}
 
 

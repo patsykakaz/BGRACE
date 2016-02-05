@@ -20,10 +20,33 @@
         transition-delay: .66s;
     }
     .carousel-inner{
-        height: 400px;
     }
     .carousel-inner .item img{
         width: 100%;
+    }
+    .carousel-inner .item .carousel-caption{
+        width: 85%;
+        bottom: 10%;
+        left: 15%;
+        text-align: left;
+    }
+    .carousel-caption{
+        font-size: 24px;
+        font-weight:lighter;
+    }
+    .carousel_caption_title{
+        text-indent: -12px;
+        letter-spacing: 3px;
+        font-family: 'Paytone One', sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 0 4px rgba(0,0,0,.2);
+    }.carousel_caption_title .fa{
+        position: relative;
+        bottom: 2px;
+        color: #d0031c;
+        font-size: 20px;
     }
     .carousel-control .fa{
         position: absolute;
@@ -32,7 +55,7 @@
 
     #boats{
         position: relative;
-        bottom: 100px;
+        bottom: 130px;
         height: 280px;
         background-color: transparent;
     }
@@ -79,10 +102,23 @@
         font-size: 15px;
     }
 
+    .separator{
+        position: relative;
+        bottom: 70px;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-bottom: 1px solid rgb(230,230,230);
+    }
+
     #blogPosts{
+        position: relative;
+        bottom: 30px;
         min-height: 200px;
         margin-top: 50px;
         margin-bottom: 50px;
+    }
+    #blogPosts .col-md-4{
+        padding: 0 2px;
     }
     .blogPost_box{
         position: relative;
@@ -118,10 +154,19 @@
         transition-delay: .15s;
     }
     .blogPost_caption{
-        color: rgb(50,50,60);
+        color: rgb(180,180,180);
     }
     .blogPost_caption .caption_title{
+        color: #777;
         margin: 10px 0 5px 0;
+        -moz-transition: all 0.3s ease-out;
+        -webkit-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+    }.blogPost_caption .caption_title .fa{
+        color: #d0031c;
+    }.blogPost_box:hover .caption_title{
+        color: #d0031c;
     }
     .blogPost_caption .wing{
         position: absolute;
@@ -143,7 +188,7 @@
 
 @media screen and (min-width: 1350px){
     #boats{
-        bottom: 100px;
+        bottom: 130px;
         height: 280px;
     }
     .boat_container{

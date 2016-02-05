@@ -1,8 +1,10 @@
 @charset "UTF-8";
 
+body{
+    font-family: 'Cabin', sans-serif;
+}
 h1,h2,h3,h4,h5,h6{
     color: #d0031c;
-    font-family: 'Cabin', sans-serif;
 }
 
 #logo{
@@ -19,8 +21,8 @@ h1,h2,h3,h4,h5,h6{
     border-bottom: 1px solid rgb(230,230,230);
 }
 
-.separator{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid rgb(230,230,230);
+footer{
+    min-height: 100px;
+    margin-top: 20px;
+    background-color: white;
 }

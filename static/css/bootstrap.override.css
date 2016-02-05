@@ -7,7 +7,6 @@ body{
 
 .navbar{
     margin: 0;
-    font-family: 'Cabin', sans-serif;
 }
 .navbar-default{
     background: white;
@@ -26,10 +25,4 @@ body{
     background: none;
     background-color: #d0031c;
     color: white;
-}
-
-
-footer{
-    min-height: 300px;
-    background-color: white;
 }

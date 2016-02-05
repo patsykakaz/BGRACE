@@ -4,20 +4,26 @@
         padding-bottom: 40px;
         opacity: .75;
         background-color: white;
-        -moz-transition: all 1s ease-out;
-        -webkit-transition: all 1s ease-out;
-        -o-transition: all 1s ease-out;
-        transition: all 1s ease-out;
-        -webkit-transition-delay: Os;
-        -moz-transition-delay: Os;
-        -o-transition-delay: Os;
-        transition-delay: Os;
+        -moz-transition: all .15s ease-out;
+        -webkit-transition: all .15s ease-out;
+        -o-transition: all .15s ease-out;
+        transition: all .15s ease-out;
+        -webkit-transition-delay: .15s;
+        -moz-transition-delay: .15s;
+        -o-transition-delay: .15s;
+        transition-delay: .15s;
     }#carousel:hover{
         opacity: .9;
         -webkit-transition-delay: .66s;
         -moz-transition-delay: .66s;
         -o-transition-delay: .66s;
         transition-delay: .66s;
+    }#carousel.opacitize{
+        opacity: .5;
+        -webkit-transition-delay: 0s;
+        -moz-transition-delay: 0s;
+        -o-transition-delay: 0s;
+        transition-delay: 0s;
     }
     .carousel-inner{
     }
@@ -25,7 +31,7 @@
         width: 100%;
     }
     .carousel-inner .item .carousel-caption{
-        width: 85%;
+        width: 60%;
         bottom: 10%;
         left: 15%;
         text-align: left;
@@ -35,7 +41,7 @@
         font-weight:lighter;
     }
     .carousel_caption_title{
-        text-indent: -12px;
+        text-indent: -18px;
         letter-spacing: 3px;
         font-family: 'Paytone One', sans-serif;
         font-size: 28px;
@@ -46,11 +52,19 @@
         position: relative;
         bottom: 2px;
         color: #d0031c;
-        font-size: 20px;
+        font-size: 25px;
     }
     .carousel-control .fa{
         position: absolute;
         top: 48%;
+        color: white;
+    }
+    .carousel-indicators li{
+        background-color: white;
+        border-color: transparent;
+    }.carousel-indicators li.active{
+        background-color: #d0031c;
+        border-color:  #d0031c;
     }
 
     #boats{
@@ -157,8 +171,10 @@
         color: rgb(180,180,180);
     }
     .blogPost_caption .caption_title{
+        text-indent: 2px;
+        font-size: 14px;
         color: #777;
-        margin: 10px 0 5px 0;
+        margin: 10px 0 15px 0;
         -moz-transition: all 0.3s ease-out;
         -webkit-transition: all 0.3s ease-out;
         -o-transition: all 0.3s ease-out;
@@ -184,6 +200,13 @@
     }
     .blogPost_box:hover .blogPost_caption .wing{
         width: 50%;
+    }
+
+    #distributeurs .col-md-6{
+        padding: 15px;
+    }
+    #distributeurs h3, #distributeurs h4{
+        font-family: 'Paytone One', sans-serif;
     }
 
 @media screen and (min-width: 1350px){

@@ -8,13 +8,17 @@
 {% block extra_js %}
 <script type="text/javascript">
     $(document).ready(function(){
-
+        $('.carousel').carousel({
+          interval: 8000
+        })
         $('.boat_container').mouseover(function(){
+            $('#carousel').addClass('opacitize');
             $('.blogPost_box').addClass('opacitize');
             $('.boat_container').addClass('opacitize');
             $(this).removeClass('opacitize');
         });
         $('.boat_container').mouseout(function(){
+            $('#carousel').removeClass('opacitize');
             $('.blogPost_box').removeClass('opacitize');
             $('.boat_container').removeClass('opacitize');
         });
@@ -40,9 +44,9 @@
                         <img src='{{ MEDIA_URL }}{% thumbnail element.featured_image 1200 400 %}' alt='illustration highlight {{ element.title }}' />
                         <div class="carousel-caption">
                             <h3 class='carousel_caption_title'>
-                                <i class='fa fa-chevron-right'></i> {{ element.title|upper }}
+                                <i class='fa fa-long-arrow-right'></i> {{ element.title|upper }}
                             </h3>
-                            <p> {{ element.headline }} </p>
+                            <p> {{ element.baseline|lower|capfirst }} </p>
                         </div>
                     </div>
                 {% endfor %}
@@ -50,11 +54,11 @@
 
             <!-- Controls -->
             <a class="left carousel-control" href="#highlights_carousel" role="button" data-slide="prev">
-                <span class="fa fa-lg fa-chevron-left" aria-hidden="true"></span>
+                <span class="fa fa-2x fa-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
             <a class="right carousel-control" href="#highlights_carousel" role="button" data-slide="next">
-                <span class="fa fa-lg fa-chevron-right" aria-hidden="true"></span>
+                <span class="fa fa-2x fa-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
         </div>
@@ -100,9 +104,6 @@
                             <i class='fa fa-caret-right'></i>
                             {{ element.title }}
                         </h4>
-                        <p>
-                            {# {{ element.baseline }} #}
-                        </p>
                         <div class='wing left_wing'></div>
                         <div class='wing right_wing'></div>
                     </div>
@@ -111,8 +112,26 @@
         {% endfor %}
     </div>
 
-    <div id='distributeurs'>
-        DISTRIBUTEURS
+    <div id='distributeurs' class='container'>
+        <div class='col-md-5 col-md-offset-2'>
+            <div class='box row' style='border:1px solid #d0031c;'>
+                <div class='col-md-6'>
+                    <h4 class='text-center'>Trouvez un distributeur</h4>
+                </div>
+                <div class='col-md-6'>
+                    <img style='width:100%;' src='{% static 'img/map.png' %}' alt='carte distributeurs' />
+                </div>
+            </div>
+        </div>
+        <div class='col-md-3'>
+            <div class='box' style='border:1px solid #777;'>
+                <p>
+                    Toutes les pièces Archambault
+                    <br />
+                    chez BG RACE
+                </p>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

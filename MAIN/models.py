@@ -24,7 +24,7 @@ class HiddenPage(Page):
 
 class Boat(Page):
     highlight = models.NullBooleanField(default=False,null=True, blank=True)
-    headline = models.CharField(max_length=255, null=True, blank=True)
+    baseline = models.CharField(max_length=255, null=True, blank=True)
     # featured_image = FileBrowseField("Image", max_length=255, directory="/boat/illustration'", extensions=[".jpg",".jpeg",".png",], null=False)
     featured_image = FileField(verbose_name=_("Image en Situation"),
         upload_to=upload_to("MAIN.Boat", "Boat"),

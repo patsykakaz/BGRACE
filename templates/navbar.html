@@ -4,7 +4,7 @@
     <div class="container">
         <div id='logo' class='col-md-12'>
             <div class='logo_wing'></div>
-            <img src='{% static 'img/logo/logobgarcha.png' %}' alt='logo_archambault' />
+            <a href='/'><img src='{% static 'img/logo/logobgarcha.png' %}' alt='logo_archambault' /></a>
             <div class='logo_wing'></div>
         </div>
         <div class="navbar-header">
@@ -22,10 +22,10 @@
             {% endblock%}
         </div>
         <div class="navbar-collapse collapse">
-            {% block navbar_search_form %}{% search_form "all" %}{% endblock %}
             {% block navbar_dropdown_menu %}
                 {% page_menu "pages/menus/dropdown.html" %}
             {% endblock%}
+            {% block navbar_search_form %}{% search_form "pages.Page" %}{% endblock %}
         </div>
     </div>
 </div>

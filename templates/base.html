@@ -56,6 +56,10 @@
 
 <body id="{% block body_id %}body{% endblock %}">
 
+<div id='loader'>
+    <i class="fa fa-2x fa-circle-o-notch fa-spin"></i>
+</div>
+
 {% include "navbar.html" %}
 
 
@@ -100,7 +104,14 @@
 
 
 <footer class="container">
+    <div class='col-md-8'>
         {% page_menu "pages/menus/footer.html" %}
+    </div>
+    <div class='col-md-2'>
+        <i class='fa fa-facebook'></i>
+        <i class='fa fa-twitter'></i>
+        <i class='fa fa-linkedin'></i>
+    </div>
 </footer>
 
 {% block footer_js %}

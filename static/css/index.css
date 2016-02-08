@@ -1,8 +1,7 @@
     #carousel{
         position: relative;
         z-index: 5;
-        padding-bottom: 40px;
-        opacity: .75;
+        /*opacity: .75;*/
         background-color: white;
         -moz-transition: all .15s ease-out;
         -webkit-transition: all .15s ease-out;
@@ -13,7 +12,7 @@
         -o-transition-delay: .15s;
         transition-delay: .15s;
     }#carousel:hover{
-        opacity: .9;
+        /*opacity: .9;*/
         -webkit-transition-delay: .66s;
         -moz-transition-delay: .66s;
         -o-transition-delay: .66s;
@@ -44,7 +43,7 @@
         text-indent: -18px;
         letter-spacing: 3px;
         font-family: 'Paytone One', sans-serif;
-        font-size: 28px;
+        font-size: 32px;
         font-weight: bold;
         color: white;
         text-shadow: 0 0 4px rgba(0,0,0,.2);
@@ -69,11 +68,11 @@
 
     #boats{
         position: relative;
-        bottom: 130px;
-        height: 280px;
+        height: 200px;
         background-color: transparent;
     }
     .boat_container{
+        overflow: hidden;
         position: absolute;
         bottom: 0;
         z-index: 9;
@@ -101,6 +100,10 @@
         -o-transition-delay: 0s;
         transition-delay: 0s;
     }
+    .boat_container h5{
+        margin: 0;
+        padding: 10px 0;
+    }
     .boat_box{
         position: absolute;
         bottom: 0;
@@ -112,21 +115,21 @@
         width: 100%;
     }
     .boat_title{
+        margin: 0;
+        padding: 10px 0;
         letter-spacing: 3px; 
         font-size: 15px;
+    }.opacitize .boat_title{
+        color: #777;
     }
 
     .separator{
-        position: relative;
-        bottom: 70px;
         margin-top: 0;
         margin-bottom: 0;
         border-bottom: 1px solid rgb(230,230,230);
     }
 
     #blogPosts{
-        position: relative;
-        bottom: 30px;
         min-height: 200px;
         margin-top: 50px;
         margin-bottom: 50px;
@@ -137,6 +140,7 @@
     .blogPost_box{
         position: relative;
         overflow: hidden;
+        margin-bottom: 15px;
         /*border-bottom: 3px solid white;*/
         -moz-transition: all 0.15s ease-out;
         -webkit-transition: all 0.15s ease-out;
@@ -202,27 +206,34 @@
         width: 50%;
     }
 
-    #distributeurs .col-md-6{
+    #distributeurs .box{
         padding: 15px;
     }
     #distributeurs h3, #distributeurs h4{
         font-family: 'Paytone One', sans-serif;
     }
 
+@media screen and (min-width: 768px) and (max-width: 991px){
+    .boat_title{
+        letter-spacing: 0;
+        font-size: 13px;
+    }
+}
+
 @media screen and (min-width: 1350px){
     #boats{
-        bottom: 130px;
-        height: 280px;
+        height: 200px;
     }
     .boat_container{
+        overflow: hidden;
         padding: 10px;
-        height: 130px;
-        width: 170px;
+        /*height: 130px;*/
+        /*width: 170px;*/
     }.boat_container:hover{
         height: 300px;
     }
     .boat_box{
-        height: 250px;
-        width: 150px;
+        /*height: 250px;*/
+        width: 100%;
     }
 }

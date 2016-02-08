@@ -78,12 +78,12 @@
     </div>
     {% block title %}{% endblock %}
 
-    <div id='boats'>
+    <div id='boats' class='container'>
         {% for Boat in Boats %}
             <div class='boat_container'>
                 <h5 class='text-center'>Découvrir</h5>
                 <div class='boat_box text-center'>
-                    <img src="{{ MEDIA_URL }}{% thumbnail Boat.sidecut_image 150 200 %}" alt='plan coupe bateau' />
+                    <img src="{{ MEDIA_URL }}{% thumbnail Boat.sidecut_image 200 0 %}" alt='plan coupe bateau' />
                     <h4 class='boat_title'>{{ Boat.title }}</h4>
                 </div>
             </div>
@@ -91,12 +91,12 @@
     </div>
 
     <div class='container'>
-        <div class='col-md-4 col-md-offset-4 separator'></div>
+        <div class='col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 separator'></div>
     </div>
 
     <div id='blogPosts' class='container'>
         {% for element in last_blogPosts %}
-            <div class='col-md-4'>
+            <div class='col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2'>
                 <div class='blogPost_box'>
                     <img src='{{ MEDIA_URL }}{% thumbnail element.featured_image 300 200 %}' />
                     <div class='blogPost_caption'>
@@ -114,11 +114,11 @@
 
     <div id='distributeurs' class='container'>
         <div class='col-md-5 col-md-offset-2'>
-            <div class='box row' style='border:1px solid #d0031c;'>
-                <div class='col-md-6'>
+            <div class='row' style='border:1px solid #d0031c;'>
+                <div class='col-md-6 box'>
                     <h4 class='text-center'>Trouvez un distributeur</h4>
                 </div>
-                <div class='col-md-6'>
+                <div class='col-md-6 box'>
                     <img style='width:100%;' src='{% static 'img/map.png' %}' alt='carte distributeurs' />
                 </div>
             </div>

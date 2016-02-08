@@ -21,7 +21,7 @@ BoatAdmin_extra_fieldsets = (
     (None,
         {'fields': ('highlight','featured_image',
                     'sidecut_image',
-                    'logo','headline',
+                    'logo','baseline',
                     'presentation','architecte',
                     'longueur_HT',
                     'longueur_coque','largeur',

@@ -12,13 +12,19 @@ body{
     background: white;
 }
 
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
     color: #d0031c;
     background-color: white;
 }
-.nav > li > a.dropdown-toggle:hover{
+.nav > li > a.dropdown-toggle:hover, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
     color: #d0031c;
     background-color: white;
+}
+.navbar-default .navbar-nav > .active > a{
+    background-image: none;
+    background-color: white;
+    box-shadow: none;
+    color: #d0031c;
 }
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{

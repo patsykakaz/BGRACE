@@ -36,6 +36,31 @@ h1,h2,h3,h4,h5,h6{
 
 footer{
     min-height: 100px;
-    margin-top: 20px;
+    margin-top: 40px;
     background-color: white;
+}
+.footer_item{
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 15px;
+    background-color: #E7E7E7;
+    -moz-transition: all .15s ease-out;
+    -webkit-transition: all .15s ease-out;
+    -o-transition: all .15s ease-out;
+    transition: all .15s ease-out;
+}.footer_item:hover{
+    background-color: #d0031c;
+}.footer_item a{
+    color: #777;
+    text-decoration: none;
+}.footer_item:hover a{
+    color: white;
+}
+
+#social{
+    text-align: right;
+}#social i{
+    display: inline-block;
+    margin: 10px;
+    color: #d0031c;
 }

@@ -32,6 +32,9 @@ class Boat(Page):
     sidecut_image = FileField(verbose_name=_("Plan Coupe"),
         upload_to=upload_to("MAIN.Boat", "Boat"),
         format="Image", max_length=255, null=True, blank=False)
+    sidecut_image_2 = FileField(verbose_name=_("Plan Coupe"),
+        upload_to=upload_to("MAIN.Boat", "Boat"),
+        format="Image", max_length=255, null=True, blank=False)
     logo = FileField(verbose_name=_("Logo Bateau"),
         upload_to=upload_to("MAIN.Boat", "Boat"),
         format="Image", max_length=255, null=True, blank=True)

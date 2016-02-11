@@ -4,6 +4,7 @@ $('#loader .fa').css('left',($(window).width()-$('#loader .fa').outerWidth())/2)
 
 $(window).load(function(){
     logoWings();
+    carouselCaption();
     BoatPlacing();
     BoatHover();
 });
@@ -11,6 +12,7 @@ $(window).resize(function(){
     $('#loader .fa').css('top',($(window).height()-$('#loader .fa').outerHeight())/2);
     $('#loader .fa').css('left',($(window).width()-$('#loader .fa').outerWidth())/2);
     logoWings();
+    carouselCaption();
     BoatPlacing();
     BoatHover();
 })
@@ -22,6 +24,12 @@ function logoWings(){
     $('.logo_wing').each(function(){
         $(this).width(W);
     });
+}
+
+function carouselCaption(){
+    padding = 10;
+    $('.carousel-caption').height($('.carousel_caption_title').outerHeight()+$('.carouse-caption p').outerHeight()+2*padding);
+    $('.carousel-caption').width($('.carousel_caption_title').outerWidth()+$('.carouse-caption p').outerWidth()+2*padding);
 }
 
 function placeBoats(){

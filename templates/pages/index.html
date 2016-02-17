@@ -113,13 +113,28 @@
     </div>
 
     <div id='distributeurs' class='container'>
-        <div class='col-md-5 col-md-offset-2'>
+        <div class='col-md-7 col-md-offset-1'>
             <div class='row' style='border:1px solid #d0031c;'>
                 <div class='col-md-6 box'>
                     <h4 class='text-center'>Trouvez un distributeur</h4>
+                    <form>
+                        <select>
+                            {% for bassin in bassins_navigation %}
+                                <option href='{{ bassin.get_absolute_url }}'>{{ bassin.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                    <h4 class='text-center'>ou</h4>
+                    <form>
+                        <select>
+                            {% for pays in distrib_pays_list %}
+                            <option value='{{ pays }}'>{{ pays.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
                 </div>
                 <div class='col-md-6 box'>
-                    <img style='width:100%;' src='{% static 'img/map.jpgg' %}' alt='carte distributeurs' />
+                    <img style='width:100%;' src='{% static 'img/map.jpg' %}' alt='carte distributeurs' />
                 </div>
             </div>
         </div>

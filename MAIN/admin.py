@@ -26,7 +26,7 @@ BoatAdmin_extra_fieldsets = (
                     'longueur_HT',
                     'longueur_coque','largeur',
                     'tirant_eau','deplacement',
-                    'leste','surface_voile','spi',
+                    'lest','surface_voile','spi',
                     'motorisation','capacite_carburant',
                     'capacite_eau','cabines',
                     'certification_CE',
@@ -58,6 +58,10 @@ DistributeurAdmin_extra_fieldsets = (
         }
     ),
 )
+
+class BassinNavAdmin(PageAdmin):
+    fieldsets = deepcopy(PageAdmin.fieldsets)
+
 class Contact_DistributeurInline(admin.TabularInline):
     model = Contact_Distributeur
 
@@ -69,6 +73,7 @@ class DistributeurAdmin(PageAdmin):
 admin.site.unregister(BlogPost)
 admin.site.register(BlogPost, MyBlogPostAdmin)
 admin.site.register(Boat, BoatAdmin)
+admin.site.register(BassinNav, BassinNavAdmin)
 admin.site.register(Distributeur, DistributeurAdmin)
 
 

@@ -52,7 +52,7 @@ class Boat(Page):
                                     null=True, blank=True)
     deplacement = models.CharField(max_length=255, 
                                     null=True, blank=True)
-    leste = models.CharField(max_length=255, 
+    lest = models.CharField(max_length=255, 
                                     null=True, blank=True)
     surface_voile = models.CharField(max_length=255, 
                                     null=True, blank=True)
@@ -103,15 +103,19 @@ class BoatPalmares(models.Model):
     course = models.CharField(max_length=255)
     resultat = models.CharField(max_length=255)
 
+class BassinNav(Page):
+    def save(self, *args, **kwargs):
+        # in_menus empty -> exclude from content_trees
+        self.in_menus = []
+        super(BassinNav, self).save(*args, **kwargs)
 
 class Distributeur(Page):
     illustration = models.ImageField(upload_to=settings.MEDIA_ROOT
-                                        +'/distributeur/illustration', null=False)
+                                        +'/distributeur/illustration', null=True, blank=True)
     logo = models.ImageField(upload_to=settings.MEDIA_ROOT
-                                        +'/distributeur/logo_distributeur', null=False)
+                                        +'/distributeur/logo_distributeur', null=True, blank=True)
+    bassin_navigation = models.ForeignKey("BassinNav")
     pays = CountryField()
-    bassin_navigation = models.CharField(max_length=255, 
-                                    null=True, blank=True)
     presentation = RichTextField(_("Presentation"))
 
 class Contact_Distributeur(models.Model):

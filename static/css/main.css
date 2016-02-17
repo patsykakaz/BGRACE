@@ -25,7 +25,8 @@ h1,h2,h3,h4,h5,h6{
     text-align: center;
 }#logo img{
     height: 100%;
-    padding: 20px 20px 10px 20px;
+    /*padding: 20px 20px 10px 20px;*/
+    padding: 10px;
 }
 .logo_wing{
     display: inline-block;

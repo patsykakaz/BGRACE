@@ -11,6 +11,9 @@ class TranslatedBoat(TranslationOptions):
 class TranslatedDistributeur(TranslationOptions):
     fields = ('presentation',)
 
+class TranslatedBassinNav(TranslationOptions):
+    fields = ()
+
 
 # class TranslatedBlogPost(TranslatedDisplayable, TranslatedRichText):
     # fields = ('baseline',)
@@ -21,3 +24,4 @@ class TranslatedDistributeur(TranslationOptions):
 
 translator.register(Boat, TranslatedBoat)
 translator.register(Distributeur, TranslatedDistributeur)
+translator.register(BassinNav, TranslatedBassinNav)

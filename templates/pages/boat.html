@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load pages_tags mezzanine_tags i18n staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/boat.css" %}">
+{% endblock %}
+
+{% block main %}
+    <div id='boat' class='container'>
+        <div id='boat_info' class='col-md-6'>
+            <h2>{{ boat.title }}</h2>
+            informations
+        </div>
+        <div id='boat_sidecut' class='col-md-6'>
+            <img src='{{ MEDIA_URL }}{% thumbnail boat.sidecut_image 800 0 %}' alt='plan coupe bateau' />
+        </div>
+    </div>
+{% endblock %}

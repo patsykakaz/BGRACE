@@ -80,13 +80,13 @@
 
     <div id='boats' class='container'>
         {% for Boat in Boats %}
-            <div class='boat_container'>
+            <a href='{{ Boat.get_absolute_url }}' class='boat_container'>
                 <h5 class='text-center'>Découvrir</h5>
                 <div class='boat_box text-center'>
                     <img src="{{ MEDIA_URL }}{% thumbnail Boat.sidecut_image 200 0 %}" alt='plan coupe bateau' />
                     <h4 class='boat_title'>{{ Boat.title }}</h4>
                 </div>
-            </div>
+            </a>
         {% endfor %}
     </div>
 

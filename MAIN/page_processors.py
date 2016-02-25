@@ -10,6 +10,7 @@ from .models import *
 
 @processor_for('/')
 def processor_home(request, page):
+    Boats = Boat.objects.filter(occasion=False)
     BlogPost_highlights = BlogPost.objects.filter(highlight=True)[:3]
     Boat_highlights = Boat.objects.filter(highlight=True)[:3]
     highlights = sorted(chain(BlogPost_highlights,Boat_highlights))
@@ -24,4 +25,29 @@ def processor_home(request, page):
 @processor_for(Boat)
 def processor_home(request, page):
     boat = Boat.objects.get(title=page.title)
+    illustrations = BoatGalery.objects.filter(Boat=boat)
+    palmares_all = BoatPalmares.objects.filter(Boat=boat)
+    documentation_all = BoatDocumentation.objects.filter(Boat=boat)
+    return locals()
+
+
+@processor_for('occasion')
+def processor_home(request, page):
+    occasions = Boat.objects.filter(occasion=True)
+    for element in occasions:
+        element.illustrations = BoatGalery.objects.filter(Boat=element)
+    return locals()
+
+@processor_for('distributeurs')
+def processor_home(request, page):
+    distrib_pays_list = []
+    for element in Distributeur.objects.all():
+        if element.pays not in distrib_pays_list:
+            distrib_pays_list.append(element.pays)
+    bassins_navigation = BassinNav.objects.all()
+    print 'OK'
+    if request.POST:
+        print "POST is True"
+    else: 
+        print 'POST is False'
     return locals()

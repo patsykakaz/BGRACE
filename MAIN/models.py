@@ -23,18 +23,20 @@ class HiddenPage(Page):
         super(HiddenPage, self).save(*args, **kwargs)
 
 class Boat(Page):
-    highlight = models.NullBooleanField(default=False,null=True, blank=True)
-    baseline = models.CharField(max_length=255, null=True, blank=True)
-    # featured_image = FileBrowseField("Image", max_length=255, directory="/boat/illustration'", extensions=[".jpg",".jpeg",".png",], null=False)
-    featured_image = FileField(verbose_name=_("Image en Situation"),
+    highlight = models.NullBooleanField(default=False,null=True, blank=True,verbose_name='mettre en avant sur la HomePage')
+    baseline = models.CharField(max_length=255, null=True, blank=True, verbose_name='baseline/modèle',help_text='Baseline si modèle neuf, nom du modèle si bateau d\'occasion')
+    occasion = models.NullBooleanField(default=False, null=True, blank=False)
+    price = models.CharField(max_length=255,default='non spécifié', null=True, blank=True, verbose_name='prix', help_text='pour bateau occasion uniquement')
+    annee_construction = models.CharField(max_length=255, null=True, blank=True, help_text='pour bateau occasion uniquement')
+    featured_image = FileField(verbose_name=_("Image en situation"),
         upload_to=upload_to("MAIN.Boat", "Boat"),
         format="Image", max_length=255, null=True, blank=False)
-    sidecut_image = FileField(verbose_name=_("Plan Coupe"),
+    sidecut_image = FileField(verbose_name=_("Plan de coupe"),
         upload_to=upload_to("MAIN.Boat", "Boat"),
-        format="Image", max_length=255, null=True, blank=False)
-    sidecut_image_2 = FileField(verbose_name=_("Plan Coupe"),
+        format="Image", max_length=255, null=True, blank=True)
+    sidecut_image_2 = FileField(verbose_name=_("Plan de coupe avec voile"),
         upload_to=upload_to("MAIN.Boat", "Boat"),
-        format="Image", max_length=255, null=True, blank=False)
+        format="Image", max_length=255, null=True, blank=True)
     logo = FileField(verbose_name=_("Logo Bateau"),
         upload_to=upload_to("MAIN.Boat", "Boat"),
         format="Image", max_length=255, null=True, blank=True)
@@ -71,12 +73,21 @@ class Boat(Page):
     association_classe = models.CharField(max_length=255, 
                                     null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        # in_menus empty -> exclude from content_trees
+        if self.occasion == True :
+            self.in_menus = []
+        else:
+            self.in_menus = ['1']
+        super(Boat, self).save(*args, **kwargs)
+
 class BoatGalery(models.Model):
     Boat = models.ForeignKey("Boat")
     image = FileField(verbose_name=_("Image"),
         upload_to=upload_to("MAIN.Boat", "Boat"),
         format="Image", max_length=255, null=True, blank=False)
     description = models.CharField(max_length=255, null=True, blank=True)
+    display_size = models.IntegerField(default=6,help_text='taille de l\'image. Entrez un nombre pair, entre 2 et 12.')
 
 class BoatDocumentation(models.Model):
     Boat = models.ForeignKey("Boat")
@@ -102,6 +113,8 @@ class BoatPalmares(models.Model):
     year = models.DateField()
     course = models.CharField(max_length=255)
     resultat = models.CharField(max_length=255)
+
+
 
 class BassinNav(Page):
     def save(self, *args, **kwargs):

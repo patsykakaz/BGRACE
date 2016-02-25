@@ -27,7 +27,8 @@ body{
     color: #d0031c;
 }
 
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus,
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
     background: none;
     background-color: #d0031c;
     color: white;
@@ -49,4 +50,8 @@ body{
     border-color: #d0031c;
     border-radius: 0;
     color: white;
+}
+
+.img-thumbnail{
+    border-radius: 0;
 }

@@ -6,7 +6,7 @@ from mezzanine.core.translation import TranslatedDisplayable, TranslatedRichText
 from mezzanine.blog.models import BlogCategory, BlogPost
 
 class TranslatedBoat(TranslationOptions):
-    fields = ('baseline','presentation',)
+    fields = ('baseline','price','presentation',)
 
 class TranslatedDistributeur(TranslationOptions):
     fields = ('presentation',)

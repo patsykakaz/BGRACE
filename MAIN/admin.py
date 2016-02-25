@@ -12,7 +12,7 @@ from mezzanine.blog.models import BlogPost
 
 blog_fieldsets = deepcopy(BlogPostAdmin.fieldsets)
 blog_fieldsets[0][1]["fields"].insert(-2, "highlight")
-blog_fieldsets[0][1]["fields"].insert(-2, "baseline")
+# blog_fieldsets[0][1]["fields"].insert(-2, "baseline")
 class MyBlogPostAdmin(BlogPostAdmin):
     fieldsets = blog_fieldsets
 
@@ -20,8 +20,9 @@ class MyBlogPostAdmin(BlogPostAdmin):
 BoatAdmin_extra_fieldsets = (
     (None,
         {'fields': ('highlight','featured_image',
-                    'sidecut_image',
+                    'sidecut_image','sidecut_image_2',
                     'logo','baseline',
+                    'occasion','price','annee_construction',
                     'presentation','architecte',
                     'longueur_HT',
                     'longueur_coque','largeur',

@@ -1,18 +1,475 @@
 {% extends "base.html" %}
 {% load pages_tags mezzanine_tags i18n staticfiles %}
 
+{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+
+{% block meta_keywords %}
+{% metablock %}
+    {% keywords_for page as keywords %}
+    {% for keyword in keywords %}
+        {% if not forloop.first %}, {% endif %}
+        {{ keyword }}
+    {% endfor %}
+{% endmetablock %}
+{% endblock %}
+
+{% block meta_description %}
+    {% metablock %}
+        {{ page.description }}
+    {% endmetablock %}
+{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static "css/boat.css" %}">
 {% endblock %}
 
-{% block main %}
-    <div id='boat' class='container'>
-        <div id='boat_info' class='col-md-6'>
-            <h2>{{ boat.title }}</h2>
-            informations
-        </div>
-        <div id='boat_sidecut' class='col-md-6'>
-            <img src='{{ MEDIA_URL }}{% thumbnail boat.sidecut_image 800 0 %}' alt='plan coupe bateau' />
-        </div>
-    </div>
+{% block extra_js %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        if($('#layer-sidecut img').attr('rel')){
+            target = $('#layer-sidecut img');
+            target.mouseover(function(){
+                rel = target.attr('rel');
+                src = target.attr('src');
+                target.attr('src',rel).attr('rel',src);
+            });
+            target.mouseout(function(){
+                rel = target.attr('rel');
+                src = target.attr('src');
+                target.attr('src',rel).attr('rel',src);
+            });
+        }
+        // sizeBoatImg();
+    });
+    $(window).resize(function(){
+        // sizeBoatImg();
+    });
+    function sizeBoatImg(){
+        $('#layer-sidecut img').height($(window).height()*0.66);
+    }
+</script>
 {% endblock %}
+
+{% block title %}
+    {% editable page.title %}{{ page.title }}{% endeditable %}
+{% endblock %}
+
+{% block main %}
+    {% if not boat.occasion %}
+        <div id='liner'></div>
+        <div id='boat1' class='container'>
+            <div class='col-md-12'>
+                <h1>{{ boat.title }}</h1>
+                <h3 class='text-muted'>
+                    <i class='fa fa-long-arrow-right'></i> {{ boat.baseline }}
+                </h3>
+            </div>
+            <div class='col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center'>
+                <div id='layer-sidecut'>
+                    <img class='loader' src='{{ MEDIA_URL }}{{ boat.sidecut_image }}' alt='plan coupe bateau' {% if boat.sidecut_image_2 %}rel='{{ MEDIA_URL }}{{ boat.sidecut_image_2 }}'{% endif %}/>
+                </div>
+            </div>
+            <div class='col-lg-4 col-md-4 col-sm-3 col-xs-12'>
+                <h4>CARACTERISTIQUES TECHNIQUES</h4>
+                <div id='info-block'>
+                    {% if boat.architecte %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Architecte : <strong>{{ boat.architecte }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.longueur_HT %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Longueur H.T. : <strong>{{ boat.longueur_HT }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.longueur_coque %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Longueur coque : <strong>{{ boat.longueur_coque }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.largeur %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Largeur : <strong>{{ boat.largeur }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.tirant_eau %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Tirant d'eau : <strong>{{ boat.tirant_eau }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.deplacement %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Déplacement : <strong>{{ boat.deplacement }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.lest %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Lest : <strong>{{ boat.lest }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.surface_voile %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Surface de voile standard : <strong>{{ boat.surface_voile }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.spi %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Spi : <strong>{{ boat.spi }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.motorisation %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Motorisation : <strong>{{ boat.motorisation }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.capacite_carburant %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Capacité carburant : <strong>{{ boat.capacite_carburant }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.capacite_eau %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Capacité eau : <strong>{{ boat.capacite_eau }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.cabines %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Cabines : <strong>{{ boat.cabines }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.certification_CE %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Certification C.E. : <strong>{{ boat.certification_CE }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.association_classe %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Association de classe : <strong>{{ boat.association_classe|richtext_filters|safe  }}</strong>
+                    </div>
+                    {% endif %}
+                </div>
+                {% if documentation_all %}
+                <h4>DOCUMENTATION</h4>
+                {% for doc in documentation_all %}
+                    <a class='doc_box' href='{{ MEDIA_URL}}{{ doc.fileTarget }}' target='blank'>
+                        {% if doc.doc_nature%}
+                            {{ doc.doc_nature }}
+                        {% else %}
+                            {{ doc.alternative_doc_nature }}
+                        {% endif %}
+                    </a>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div id='boat_info' class='col-lg-4 col-md-4 col-sm-5 col-xs-12'>
+                <div class='text-justify'>
+                    <h4>PRESENTATION</h4>
+                    {{ boat.presentation|richtext_filters|safe }}
+                </div>
+            </div>
+        </div>
+        <div id='boat2'>
+            <div class='container text-center'>
+                <h2 class='text-center'> PALMARES </h2>
+                <div style='display:inline-block; margin:auto;'>
+                {% for palmares in palmares_all %}
+                    <div class='trophy'>
+                        {{ palmares.year|date:"SHORT_DATE_FORMAT" }}
+                        <i class='fa fa-trophy'></i>
+                        {{ palmares.course }}
+                        <i class='fa fa-long-arrow-right'></i>
+                        <span class='resultat'>{{ palmares.resultat }}</span>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div id='boat3' class='container'>
+            <h2 class='text-center'> GALLERIE </h2>
+            <div class='row'>
+            {% for illustration in illustrations %}
+                <a href='javascript:void(0)' data-toggle="modal" data-target="#modal-{{ forloop.counter0 }}">
+                    <div class='col-md-{{ illustration.display_size }} col-sm-{{ illustration.display_size }} col-xs-12 illustration_boat'>
+                        {% if illustration.display_size == 2 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 200 450 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% elif illustration.display_size == 4 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 400 450 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% elif illustration.display_size == 6 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 600 450 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% elif illustration.display_size == 8 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 800 450 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% elif illustration.display_size == 10 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 1000 450 %")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% elif illustration.display_size == 12 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 1200 450 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% else %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 400 450 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% endif %}
+                        {# <p>{{ illustration.description }}</p> #}
+                        <i class='fa fa-xl fa-expand'></i>
+                    </div>
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="modal-{{ forloop.counter0 }}" tabindex="-1" role="dialog" aria-labelledby="modal-{{ forloop.counter0 }}-label">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title text-center" id="modal-{{ forloop.counter0 }}-label">
+                                    {% if illustration.description%}
+                                        {{ illustration.description }}
+                                    {% else %}
+                                        illustration {{ forloop.counter }} - {{ boat.title }}
+                                    {% endif %}
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <img src='{{ MEDIA_URL }}{{ illustration.image }}' alt='illustration full-size' />
+                            </div>
+                        </div>
+                    </div>-
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div id='liner' class='occasion'></div>
+        <div id='boat1' class='container'>
+            <div class='row'>
+                <h2 class='fontUp col-md-6 col-sm-6 col-xs-6'>{{ boat.title }}</h2>
+                <h2 class='fontUp col-md-6 col-sm-6 col-xs-6 text-right'>
+                    {{ boat.price }}
+                </h2>
+            </div>
+            <div class='row'>
+                <h3 class='col-md-6 col-sm-6 col-xs-6 text-muted'>
+                    <i class='fa fa-long-arrow-right'></i>
+                    {{ boat.baseline }}
+                </h3>
+                <h3 class='col-md-6 col-sm-6 col-xs-6 text-right text-muted'>
+                    Année de construction : <b>{{ boat.annee_construction }}</b>
+                </h3>
+            </div>
+            <div class='col-md-8'>
+                <h4> GALLERIE </h4>
+                <div class='row'>
+                {% for illustration in illustrations %}
+                    <a href='javascript:void(0)' data-toggle="modal" data-target="#modal-{{ forloop.counter0 }}">
+                        <div class='col-md-{{ illustration.display_size }} col-sm-{{ illustration.display_size }} col-xs-12 illustration_boat occasion'>
+                        {% if illustration.display_size == 2 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 160 350 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% elif illustration.display_size == 4 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 320 350 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% elif illustration.display_size == 6 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 480 350 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% elif illustration.display_size == 8 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 640 350 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% elif illustration.display_size == 10 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 800 350 %")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% elif illustration.display_size == 12 %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 960 350 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% else %}
+                            <div class='cropped_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 400 350 %}")'></div>
+                            <div class='mobile_illustration' style='background-image:url("{{ MEDIA_URL }}{% thumbnail illustration.image 370 250 %}")'></div>
+                        {% endif %}
+                            {# <p>{{ illustration.description }}</p> #}
+                            <i class='fa fa-xl fa-expand'></i>
+                        </div>
+                    </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal-{{ forloop.counter0 }}" tabindex="-1" role="dialog" aria-labelledby="modal-{{ forloop.counter0 }}-label">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title text-center" id="modal-{{ forloop.counter0 }}-label">
+                                        {% if illustration.description%}
+                                            {{ illustration.description }}
+                                        {% else %}
+                                            illustration {{ forloop.counter }} - {{ boat.title }}
+                                        {% endif %}
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <img src='{{ MEDIA_URL }}{{ illustration.image }}' alt='illustration full-size' />
+                                </div>
+                            </div>
+                        </div>-
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            <div class='col-md-4'>
+                <h4>CARACTERISTIQUES TECHNIQUES</h4>
+                <div id='info-block'>
+                    {% if boat.architecte %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Architecte : <strong>{{ boat.architecte }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.longueur_HT %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Longueur H.T. : <strong>{{ boat.longueur_HT }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.longueur_coque %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Longueur coque : <strong>{{ boat.longueur_coque }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.largeur %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Largeur : <strong>{{ boat.largeur }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.tirant_eau %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Tirant d'eau : <strong>{{ boat.tirant_eau }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.deplacement %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Déplacement : <strong>{{ boat.deplacement }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.lest %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Lest : <strong>{{ boat.lest }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.surface_voile %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Surface de voile standard : <strong>{{ boat.surface_voile }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.spi %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Spi : <strong>{{ boat.spi }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.motorisation %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Motorisation : <strong>{{ boat.motorisation }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.capacite_carburant %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Capacité carburant : <strong>{{ boat.capacite_carburant }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.capacite_eau %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Capacité eau : <strong>{{ boat.capacite_eau }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.cabines %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Cabines : <strong>{{ boat.cabines }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.certification_CE %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Certification C.E. : <strong>{{ boat.certification_CE }}</strong>
+                    </div>
+                    {% endif %}
+                    {% if boat.association_classe %}
+                    <div class='info-unit'>
+                        <i class='fa fa-caret-right'></i>
+                        Association de classe : <strong>{{ boat.association_classe|richtext_filters|safe  }}</strong>
+                    </div>
+                    {% endif %}
+                </div>
+                {% if documentation_all %}
+                <h4>DOCUMENTATION</h4>
+                {% for doc in documentation_all %}
+                    <a class='doc_box' href='{{ MEDIA_URL}}{{ doc.fileTarget }}' target='blank'>
+                        {% if doc.doc_nature%}
+                            {{ doc.doc_nature }}
+                        {% else %}
+                            {{ doc.alternative_doc_nature }}
+                        {% endif %}
+                    </a>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div id='boat_info' class='col-md-8 text-justify'>
+                <div class='text-justify'>
+                    <h4>PRESENTATION</h4>
+                    {{ boat.presentation|richtext_filters|safe }}
+                </div>
+            </div>
+        </div>
+        <div id='boat2'>
+            <div class='container text-center'>
+                <h2 class='text-center'> PALMARES </h2>
+                <div style='display:inline-block; margin:auto;'>
+                {% for palmares in palmares_all %}
+                    <div class='trophy'>
+                        {{ palmares.year|date:"SHORT_DATE_FORMAT" }}
+                        <i class='fa fa-trophy'></i>
+                        {{ palmares.course }}
+                        <i class='fa fa-long-arrow-right'></i>
+                        <span class='resultat'>{{ palmares.resultat }}</span>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

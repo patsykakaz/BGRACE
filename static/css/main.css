@@ -10,6 +10,16 @@ a, a:hover, a:visited, a:active, a:focus{
 h1,h2,h3,h4,h5,h6{
     color: #d0031c;
 }
+h1{
+    margin: 50px 0;
+    font-family: 'Paytone One', sans-serif;
+    font-size: 28px;
+}
+h2{
+    /*font-family: 'Paytone One', sans-serif;*/
+    font-size: 18px;
+    font-weight: bold;
+}
 
 #loader{
     position: fixed;
@@ -69,3 +79,4 @@ footer{
     margin: 10px;
     color: #d0031c;
 }
+

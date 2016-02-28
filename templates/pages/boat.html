@@ -3,21 +3,21 @@
 
 {% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
 
-{% block meta_keywords %}
-{% metablock %}
-    {% keywords_for page as keywords %}
-    {% for keyword in keywords %}
-        {% if not forloop.first %}, {% endif %}
-        {{ keyword }}
-    {% endfor %}
-{% endmetablock %}
-{% endblock %}
+{# {% block meta_keywords %} #}
+{# {% metablock %} #}
+    {# {% keywords_for page as keywords %} #}
+    {# {% for keyword in keywords %} #}
+        {# {% if not forloop.first %}, {% endif %} #}
+        {# {{ keyword }} #}
+    {# {% endfor %} #}
+{# {% endmetablock %} #}
+{# {% endblock %} #}
 
-{% block meta_description %}
-    {% metablock %}
-        {{ page.description }}
-    {% endmetablock %}
-{% endblock %}
+{# {% block meta_description %} #}
+    {# {% metablock %} #}
+        {# {{ page.description }} #}
+    {# {% endmetablock %} #}
+{# {% endblock %} #}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static "css/boat.css" %}">
@@ -425,10 +425,10 @@
                 <h4>DOCUMENTATION</h4>
                 {% for doc in documentation_all %}
                     <a class='doc_box' href='{{ MEDIA_URL}}{{ doc.fileTarget }}' target='blank'>
-                        {% if doc.doc_nature%}
-                            {{ doc.doc_nature }}
-                        {% else %}
+                        {% if doc.doc_nature %}
                             {{ doc.alternative_doc_nature }}
+                        {% else %}
+                            {{ doc.doc_nature }}
                         {% endif %}
                     </a>
                 {% endfor %}

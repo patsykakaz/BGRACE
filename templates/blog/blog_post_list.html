@@ -21,16 +21,6 @@
 
 {% block extra_css %}
 <style type="text/css">
-    h1{
-        margin: 50px 0;
-        font-family: 'Paytone One', sans-serif;
-        font-size: 28px;
-    }
-    h2{
-        /*font-family: 'Paytone One', sans-serif;*/
-        font-size: 18px;
-        font-weight: bold;
-    }
     h6.post-meta{
         letter-spacing: 1.5px;
         font-size: 14px;
@@ -39,17 +29,55 @@
     }
     .fa-long-arrow-right{
         padding: 5px 5px 0 0;
-        color: #d0031c
+        color: #d0031c;
     }
 
     .borderize{
         border-left: 1px dashed #CCCCCC;
     }
+    .articleIllustration-box{
+        position: relative;
+        overflow: hidden;
+    }
     .article-illustration{
         width: 100%;
     }
+    .article-hover{
+        position: absolute;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        padding: 0 15px;
+        opacity: .9;
+        text-align: center;
+        background-color: #d0031c;
+        -moz-transition: all .25s ease-out;
+        -webkit-transition: all .25s ease-out;
+        -o-transition: all .25s ease-out;
+        transition: all .25s ease-out;
+    }.articleIllustration-box:hover .article-hover{
+        top: 0;
+    }
+    .article-hover i{
+        display: inline-block;
+        color: white;
+    }
 </style>
 {% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    $(window).load(function(){
+        $('.articleIllustration-box').each(function(){
+            $(this).children('.article-hover').height($(this).children('.article-illustration').height());
+            articleH = $(this).children('.article-hover')
+            i = articleH.children('i')
+            i.css('margin-top',(articleH.height()-i.height())/2);
+        });
+    });
+</script>
+{% endblock %}
+
 
 {% block title %}
     {% editable page.title %}{{ page.title }}{% endeditable %}
@@ -58,7 +86,7 @@
 {% block main %}
 <div class='container'>
 <div class='row'>
-    <h1 class='text-center'>Régates & Evènements</h1>
+    <h1 class='text-center'>REGATES & EVENEMENTS</h1>
     {% for blog_post in blog_posts.object_list %}
         <div class='borderize col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12'>
             {% block blog_post_list_post_title %}
@@ -85,15 +113,18 @@
             {% endblock %}
 
             <div class='row'>
+                    <a href="{{ blog_post.get_absolute_url }}">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
-                        {% block blog_post_list_post_featured_image %}
-                            <a href="{{ blog_post.get_absolute_url }}">
+                        <div class='articleIllustration-box'>
+                            {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+                            {% block blog_post_list_post_featured_image %}
                                 <img class="article-illustration" src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 300 100 %}">
-                            </a>
-                        {% endblock %}
-                        {% endif %}
+                                <div class='article-hover'><i class='fa fa-plus fa-lg'></i></div>
+                            {% endblock %}
+                            {% endif %}
+                        </div>
                     </div>
+                    </a>
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         {% block blog_post_list_post_content %}

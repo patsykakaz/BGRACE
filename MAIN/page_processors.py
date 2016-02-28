@@ -10,7 +10,7 @@ from .models import *
 
 @processor_for('/')
 def processor_home(request, page):
-    Boats = Boat.objects.filter(occasion=False)
+    Boats = Boat.objects.exclude(occasion=True)
     BlogPost_highlights = BlogPost.objects.filter(highlight=True)[:3]
     Boat_highlights = Boat.objects.filter(highlight=True)[:3]
     highlights = sorted(chain(BlogPost_highlights,Boat_highlights))
@@ -31,7 +31,7 @@ def processor_home(request, page):
     return locals()
 
 
-@processor_for('occasion')
+@processor_for('occasions')
 def processor_home(request, page):
     occasions = Boat.objects.filter(occasion=True)
     for element in occasions:

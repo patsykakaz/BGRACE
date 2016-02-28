@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django.conf import settings
@@ -93,7 +94,6 @@ class BoatDocumentation(models.Model):
     Boat = models.ForeignKey("Boat")
     fileTarget = models.FileField(upload_to='boat/doc/')
     doc_nature_choices = (
-        ('', ''),
         ('Présentation', 'Présentation'),
         ('VPP', 'VPP'),
         ('Courbe de stabilité ', 'Courbe de stabilité '),

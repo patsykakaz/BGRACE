@@ -47,16 +47,28 @@ function BoatPlacing(){
         margin = 15;   
     }
 
+// REDO
+    // issue with title.height() when length too high
+    x = 0;
+    $('.boat_title').each(function(){
+        if($(this).height()>x){
+            x = $(this).height();
+        }
+    });
+    $('.boat_title').height(x);
+// ./REDO
 
     if(windowW>768){
         W = ($('#boats').width()-(boatCounter-1)*margin) / boatCounter;
         $('.boat_container').each(function(){
             $(this).outerWidth(W)
-                .height(W*0.75)
+                .height(W*0.8)
                 .css('left', margin+(W+margin)*$(this).index());
             boat_box = $(this).children('.boat_box');
             boat_box.width(W-20);
-            H = boat_box.children('img').outerHeight() + boat_box.children('h4').outerHeight() + $(this).children('h4').outerHeight();
+            H = boat_box.children('img').outerHeight() 
+                + boat_box.children('h4').outerHeight()
+                + $(this).children('h4').outerHeight();
             boat_box.height(H);
             boat_box.attr('fold_size',H)
 
@@ -72,7 +84,7 @@ function BoatPlacing(){
         W = ($('#boats').width()-(boatsPerCol-1)*margin) / boatsPerCol;
         $('.boat_container').each(function(){
             $(this).outerWidth(W)
-                .height(W*0.75)
+                .height(W*0.8)
                 .css('left', margin+W*($(this).index()%boatsPerCol)+margin*($(this).index()%boatsPerCol));
             boat_box = $(this).children('.boat_box');
             boat_box.width(W-20);
@@ -93,7 +105,7 @@ function BoatHover(){
         $(this).height(FullHeight);
     });
     $('.boat_container').mouseout(function(){
-        $(this).height($(this).outerWidth()*0.75);
+        $(this).height($(this).outerWidth()*0.8);
     });
 }
 

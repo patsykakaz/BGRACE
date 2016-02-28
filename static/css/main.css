@@ -57,9 +57,15 @@ h2{
     background-color: #d0031c;
 }
 
+#hallmark{
+    position: relative;
+    top: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+
 footer{
     min-height: 100px;
-    margin-top: 40px;
     background-color: white;
 }
 .footer_item{

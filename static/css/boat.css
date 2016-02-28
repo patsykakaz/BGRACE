@@ -90,7 +90,6 @@ h4{
 }
 .trophy{
     text-align: left;
-    color: #777;
 }
 .trophy .fa{
     margin: 0 5px;
@@ -98,8 +97,6 @@ h4{
 }
 .trophy .resultat{
     font-weight: bold;
-}
-.trophy:hover .resultat{
     color: #d0031c;
 }
 

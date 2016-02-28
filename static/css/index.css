@@ -142,12 +142,12 @@
     border-bottom: 1px solid rgb(230,230,230);
 }
 
-#blogPosts{
+#blogPosts-space{
     min-height: 200px;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
-#blogPosts .col-md-4{
+#blogPosts-space .col-md-4{
     padding: 0 2px;
 }
 .blogPost_box{
@@ -219,11 +219,18 @@
     width: 50%;
 }
 
-#distributeurs .box{
-    padding: 15px;
+#distributeurs-space{
+    margin-top: 50px;
 }
-#distributeurs h3, #distributeurs h4{
+#distributeurs-space .box{
+    padding: 0 15px 15px 15px;
+}
+#distributeurs-space h3, #distributeurs-space h4{
     font-family: 'Paytone One', sans-serif;
+}
+#pieces_detachees_img{
+    width: 100%;
+    height: auto;
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px){
@@ -232,7 +239,18 @@
         font-size: 13px;
     }
 }
-
+@media screen and (min-width: 991px) and (max-width: 1200px){
+    #pieces_detachees_img{
+        width: 100%;
+        height: 199px;
+    }
+}
+@media screen and (min-width: 1200px){
+    #pieces_detachees_img{
+        width: 100%;
+        height: 235px;
+    }
+}
 @media screen and (min-width: 1350px){
     #boats{
         height: 200px;

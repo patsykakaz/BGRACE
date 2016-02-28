@@ -73,7 +73,7 @@ h2{
 footer{
     min-height: 100px;
     padding-top: 30px;
-    background-color: white;
+    background-color: #777;
     border: none;
 }
 .footer_item{

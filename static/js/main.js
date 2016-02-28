@@ -2,6 +2,12 @@
 $('#loader .fa').css('top',($(window).height()-$('#loader .fa').outerHeight())/2);
 $('#loader .fa').css('left',($(window).width()-$('#loader .fa').outerWidth())/2);
 
+$(document).ready(function(){
+    if($('#liner').hasClass('red') || !$('#liner').length){
+        $('form>.form-group>input.form-control').addClass('red');
+    }
+});
+
 $(window).load(function(){
     logoWings();
     carouselCaption();

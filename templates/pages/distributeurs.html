@@ -21,21 +21,6 @@
 
 {% block extra_css %}
 <style type="text/css">
-    h1{
-        margin: 50px 0;
-        font-family: 'Paytone One', sans-serif;
-        font-size: 28px;
-    }
-    .boat-item{
-        overflow: hidden;
-    }.boat-item img{
-        min-width: 100%; 
-    }
-    .boat-title{
-        margin: 5px 0;
-    }
-    .boat-baseline{
-    }
 </style>
 {% endblock %}
 
@@ -44,12 +29,14 @@
 {% endblock %}
 
 {% block main %}
+    <div id='liner'></div>
     <div class='container'>
         <div class='row'>
             <h1 class='text-center'>OCCASIONS</h1>
             {% for element in occasions %}
                 <div class='col-md-6 col-sm-6 col-xs-12'>
                     <div class='boat-item'>
+                        <a href='{{ element.get_absolute_url }}'><div class='boat-price'>{{ element.price }}</div></a>
                         <a href='{{ element.get_absolute_url }}'>
                             <img src='{{ MEDIA_URL }}{% thumbnail element.illustrations.0.image 600 300 %}' alt='illustration {{ element.title }}' />
                             <h4 class='boat-title'>{{ element.title }}</h4>

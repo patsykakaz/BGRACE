@@ -25,7 +25,14 @@
             {% block navbar_dropdown_menu %}
                 {% page_menu "pages/menus/dropdown.html" %}
             {% endblock%}
-            {% block navbar_search_form %}{% search_form "all" %}{% endblock %}
+            {# {% block navbar_search_form %}{% search_form "all" %}{% endblock %} #}
+            <ul id='alt-search' class="nav navbar-nav navbar-right">
+                <li>
+                    <a href='x'>
+                        <i class='fa fa-search'></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

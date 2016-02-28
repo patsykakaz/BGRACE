@@ -183,6 +183,7 @@
                 </div>
             </div>
         </div>
+        {% if palmares_all %}
         <div id='boat2'>
             <div class='container text-center'>
                 <h2 class='text-center'> PALMARES </h2>
@@ -199,6 +200,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         <div id='boat3' class='container'>
             <h2 class='text-center'> GALLERIE </h2>
             <div class='row'>
@@ -258,10 +260,10 @@
         <div id='liner' class='occasion'></div>
         <div id='boat1' class='container'>
             <div class='row'>
-                <h2 class='fontUp col-md-6 col-sm-6 col-xs-6'>{{ boat.title }}</h2>
-                <h2 class='fontUp col-md-6 col-sm-6 col-xs-6 text-right'>
+                <h1 class='fontDown col-md-6 col-sm-6 col-xs-6'>{{ boat.title }}</h1>
+                <h1 class='fontDown col-md-6 col-sm-6 col-xs-6 text-right'>
                     {{ boat.price }}
-                </h2>
+                </h1>
             </div>
             <div class='row'>
                 <h3 class='col-md-6 col-sm-6 col-xs-6 text-muted'>
@@ -441,6 +443,7 @@
                 </div>
             </div>
         </div>
+        {% if palmares_all %}
         <div id='boat2'>
             <div class='container text-center'>
                 <h2 class='text-center'> PALMARES </h2>
@@ -457,6 +460,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     {% endif %}
 {% endblock %}
 

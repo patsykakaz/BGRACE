@@ -59,20 +59,22 @@ h2{
 
 #hallmark{
     position: relative;
-    top: 29px;
+    top: 30px;
     margin-top: 40px;
     text-align: center;
 }#hallmark img{
     width: 50px;
 }
-#footer-second-line{
-    height: 15px;
+#footer-liner{
+    height: 8px;
     border-top: 1px solid #E7E7E7;
+    border-bottom: 1px solid #E7E7E7;
 }
 footer{
     min-height: 100px;
     padding-top: 30px;
     background-color: white;
+    border: none;
 }
 .footer_item{
     display: inline-block;

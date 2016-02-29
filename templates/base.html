@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
 <link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
 {# <link rel="stylesheet" href="{% static "css/bootstrap-theme.css" %}"> #}
+<link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{% static "css/main.css" %}">
 <link rel="stylesheet" href="{% static "css/bootstrap.override.css" %}">
 
@@ -106,14 +107,21 @@
     <img src='{% static "img/hallmark.png" %}' alt='logo-hallmark' />
 </div>
 <div id='footer-liner'></div>
-<footer class="container">
-    <div class='col-md-8 col-sm-8 col-xs-12'>
-        {% page_menu "pages/menus/footer.html" %}
-    </div>
-    <div id='social' class='col-md-4 col-sm-4 col-xs-12'>
-        <i class='fa fa-2x fa-facebook'></i>
-        <i class='fa fa-2x fa-twitter'></i>
-        <i class='fa fa-2x fa-linkedin'></i>
+<footer>
+    <div class="container">
+        <div class='col-md-8 col-sm-8 col-xs-12'>
+            {% page_menu "pages/menus/footer.html" %}
+        </div>
+        <div id='social' class='col-md-4 col-sm-4 col-xs-12'>
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-square fa-stack-2x"></i>
+              <i class="fa fa-facebook fa-stack-1x"></i>
+            </span>
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-square fa-stack-2x"></i>
+              <i class="fa fa-twitter fa-stack-1x"></i>
+            </span>
+        </div>
     </div>
 </footer>
 

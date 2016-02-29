@@ -124,10 +124,11 @@
             <div class='row box' style='border:1px solid #d0031c;'>
                 <div class='col-md-4 box'>
                     <h4 class='text-center' style='margin-bottom:15px;'>Trouvez un distributeur</h4>
-                    <form>
-                        <select class="form-control">
+                    <form method='post' action='/distributeurs/'>
+                        {% csrf_token %}
+                        <select name='bassinNav'  class="form-control">
                             {% for bassin in bassins_navigation %}
-                                <option href='{{ bassin.get_absolute_url }}'>{{ bassin.title }}</option>
+                                <option href='{{ bassin.title }}'>{{ bassin.title }}</option>
                             {% endfor %}
                         </select>
                         <div class='text-center' style='margin-top:8px;'>
@@ -135,10 +136,11 @@
                         </div>
                     </form>
                     <h4 class='text-center'>ou</h4>
-                    <form>
-                        <select class="form-control">
+                    <form method='post' action='/distributeurs/'>
+                        {% csrf_token %}
+                        <select name='country'  class="form-control">
                             {% for pays in distrib_pays_list %}
-                            <option value='{{ pays }}'>{{ pays.name }}</option>
+                            <option value='{{ pays }}'>{{ pays }}</option>
                             {% endfor %}
                         </select>
                         <div class='text-center' style='margin-top:8px;'>

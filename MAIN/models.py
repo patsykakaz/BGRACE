@@ -6,7 +6,6 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 # from django.contrib.sites.models import *
-from django_countries.fields import CountryField
 
 from mezzanine.pages.models import Page
 from mezzanine.core.fields import RichTextField, FileField
@@ -122,14 +121,24 @@ class BassinNav(Page):
         self.in_menus = []
         super(BassinNav, self).save(*args, **kwargs)
 
+    def save(self, *args, **kwargs):
+        # in_menus empty -> exclude from content_trees
+        self.in_menus = []
+        super(BassinNav, self).save(*args, **kwargs)
+
 class Distributeur(Page):
     illustration = models.ImageField(upload_to=settings.MEDIA_ROOT
                                         +'/distributeur/illustration', null=True, blank=True)
     logo = models.ImageField(upload_to=settings.MEDIA_ROOT
                                         +'/distributeur/logo_distributeur', null=True, blank=True)
     bassin_navigation = models.ForeignKey("BassinNav")
-    pays = CountryField()
+    pays = models.CharField(max_length=255,null=False, blank=True)
     presentation = RichTextField(_("Presentation"))
+
+    def save(self, *args, **kwargs):
+        # in_menus empty -> exclude from content_trees
+        self.in_menus = []
+        super(Distributeur, self).save(*args, **kwargs)
 
 class Contact_Distributeur(models.Model):
     Distributeur = models.ForeignKey("Distributeur")

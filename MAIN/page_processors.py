@@ -45,10 +45,13 @@ def processor_home(request, page):
         if element.pays not in distrib_pays_list:
             distrib_pays_list.append(element.pays)
     bassins_navigation = BassinNav.objects.all()
-    if request.POST:
-        print "POST is True"
-        postData = True
-    else: 
-        postData = False
-        print 'POST is False'
+    if not request.POST:
+        emptyPostData = True
+    elif request.POST:
+        if 'bassinNav' in request.POST:
+            distributeurs = Distributeur.objects.filter(bassin_navigation=BassinNav.objects.get(title=request.POST['bassinNav']))
+        elif 'country' in request.POST:
+            distributeurs = Distributeur.objects.filter(pays=request.POST['country'])
+        else:
+            error = True
     return locals()

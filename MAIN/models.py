@@ -85,14 +85,15 @@ class BoatGalery(models.Model):
     Boat = models.ForeignKey("Boat")
     image = FileField(verbose_name=_("Image"),
         upload_to=upload_to("MAIN.Boat", "Boat"),
-        format="Image", max_length=255, null=True, blank=False)
+        format="Image", max_length=255, null=True, blank=True)
     description = models.CharField(max_length=255, null=True, blank=True)
-    display_size = models.IntegerField(default=6,help_text='taille de l\'image. Entrez un nombre pair, entre 2 et 12.')
+    display_size = models.IntegerField(default=6,help_text='taille de l\'image. Entrez un nombre pair, entre 2 et 12.',null=True, blank=True)
 
 class BoatDocumentation(models.Model):
     Boat = models.ForeignKey("Boat")
     fileTarget = models.FileField(upload_to='boat/doc/')
     doc_nature_choices = (
+        ('',''),
         ('Présentation', 'Présentation'),
         ('VPP', 'VPP'),
         ('Courbe de stabilité ', 'Courbe de stabilité '),
@@ -102,8 +103,7 @@ class BoatDocumentation(models.Model):
         ('Options', 'Options'),
     )
     doc_nature = models.CharField(max_length=50, 
-                    choices=doc_nature_choices,
-                    default='')
+                    choices=doc_nature_choices, null=True, blank=True)
     alternative_doc_nature = models.CharField(max_length=255,
                                             null=True, blank=True)
 
@@ -134,20 +134,19 @@ class Distributeur(Page):
     bassin_navigation = models.ForeignKey("BassinNav")
     pays = models.CharField(max_length=255,null=False, blank=True)
     presentation = RichTextField(_("Presentation"))
+    nom = models.CharField(max_length=255, null=True, blank=True)
+    adresse = models.CharField(max_length=255, null=True, blank=True)
+    tel = models.CharField(max_length=255, null=True, blank=True)
+    website = models.URLField(null=True, blank=True)
+    mail = models.EmailField(null=True, blank=True)
+    horaires = models.TextField(max_length=255, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         # in_menus empty -> exclude from content_trees
         self.in_menus = []
         super(Distributeur, self).save(*args, **kwargs)
 
-class Contact_Distributeur(models.Model):
-    Distributeur = models.ForeignKey("Distributeur")
-    nom = models.CharField(max_length=255)
-    adresse = models.CharField(max_length=255)
-    tel = models.CharField(max_length=255)
-    website = models.URLField()
-    mail = models.EmailField()
-    horaires = models.CharField(max_length=255)
+
 
 
 

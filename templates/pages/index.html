@@ -1,5 +1,6 @@
 {% extends "pages/richtextpage.html" %}
 {% load pages_tags mezzanine_tags i18n staticfiles %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static "css/index.css" %}">
@@ -122,8 +123,14 @@
     <div id='distributeurs-space' class='container'>
         <div class='col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-6 col-xs-offset-3'>
             <div class='row box' style='border:1px solid #d0031c;'>
-                <div class='col-md-4 box'>
-                    <h4 class='text-center' style='margin-bottom:15px;'>Trouvez un distributeur</h4>
+                <div class='col-md-4'>
+                    <h4 class='text-center' style='margin-bottom:15px;'>
+                        {% if LANGUAGE_CODE == 'fr' %}
+                            Trouvez un distributeur
+                        {% else %}
+                            Find a distributor
+                        {% endif %}
+                    </h4>
                     <form method='post' action='/distributeurs/'>
                         {% csrf_token %}
                         <select name='bassinNav'  class="form-control">
@@ -132,10 +139,22 @@
                             {% endfor %}
                         </select>
                         <div class='text-center' style='margin-top:8px;'>
-                            <button type="submit" class="btn btn-xs btn-default">Chercher</button>
+                            <button type="submit" class="btn btn-xs btn-default">
+                                {% if LANGUAGE_CODE == 'fr' %}
+                                    chercher
+                                {% else %}
+                                    go
+                                {% endif %}
+                            </button>
                         </div>
                     </form>
-                    <h4 class='text-center'>ou</h4>
+                    <h4 class='text-center'>
+                    {% if LANGUAGE_CODE == 'fr' %}
+                            ou
+                        {% else %}
+                            or
+                        {% endif %}
+                    </h4>
                     <form method='post' action='/distributeurs/'>
                         {% csrf_token %}
                         <select name='country'  class="form-control">
@@ -144,24 +163,37 @@
                             {% endfor %}
                         </select>
                         <div class='text-center' style='margin-top:8px;'>
-                            <button type="submit" class="btn btn-xs btn-default">Chercher</button>
+                            <button type="submit" class="btn btn-xs btn-default">
+                        {% if LANGUAGE_CODE == 'fr' %}
+                            chercher
+                        {% else %}
+                            go
+                        {% endif %}
+                            </button>
                         </div>
                     </form>
                 </div>
-                <div class='col-md-8 box'>
+                <div class='col-md-8'>
                     <img style='width:100%;' src='{% static 'img/map.jpg' %}' alt='carte distributeurs' />
                 </div>
             </div>
         </div>
         <div class='col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-6 col-xs-offset-3'>
-            <div class='row box'>
+            <div>
                 <a href='/services-pièces-détachées/'>
                 <div style='overflow:hidden; border:1px solid #777;'>
                     <img id='pieces_detachees_img' src='{% static 'img/pieces_detachees.jpg' %}' alt='illustration pièces détachées' />
                     <h4 class='text-center' style='font-size:14px; color:#777;'>
-                        Toutes les pièces <span style='color:#d0031c'>Archambault</span>
-                        <br />
-                        chez <span style='color:#d0031c'>BG RACE</span>
+                        {% if LANGUAGE_CODE == 'fr' %}
+                            Toutes les pièces <span style='color:#d0031c'>Archambault</span>
+                            <br />
+                            chez <span style='color:#d0031c'>BG RACE</span>
+                        {% else %}
+                        XXXXXX
+                            Toutes les pièces <span style='color:#d0031c'>Archambault</span>
+                            <br />
+                            chez <span style='color:#d0031c'>BG RACE</span>
+                        {% endif %}
                     </h4>
                 </div>
                 </a>

@@ -3,6 +3,8 @@
 from __future__ import unicode_literals
 from itertools import chain
 
+from django.utils.translation import ugettext as _
+
 from mezzanine.pages.page_processors import processor_for
 from mezzanine.core.request import current_request
 from mezzanine.blog.models import BlogPost

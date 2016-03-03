@@ -55,6 +55,8 @@ DistributeurAdmin_extra_fieldsets = (
     (None,
         {'fields': ('illustration','logo','pays',
                     'bassin_navigation','presentation',
+                    'nom','adresse','tel','website',
+                    'mail','horaires',
                     )
         }
     ),
@@ -63,11 +65,7 @@ DistributeurAdmin_extra_fieldsets = (
 class BassinNavAdmin(PageAdmin):
     fieldsets = deepcopy(PageAdmin.fieldsets)
 
-class Contact_DistributeurInline(admin.TabularInline):
-    model = Contact_Distributeur
-
 class DistributeurAdmin(PageAdmin):
-    inlines = (Contact_DistributeurInline,)
     fieldsets = deepcopy(PageAdmin.fieldsets) + DistributeurAdmin_extra_fieldsets
 
 

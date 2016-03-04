@@ -98,7 +98,7 @@ class BoatDocumentation(models.Model):
         ('VPP', 'VPP'),
         ('Courbe de stabilité ', 'Courbe de stabilité '),
         ('Règle de classe ', 'Règle de classe '),
-        ('Caractéristiques techniques détaillées ', 'Caractéristiques techniques détaillées '),
+        ('Caractéristiques techniques détaillées', 'Caractéristiques techniques détaillées'),
         ('Plan d’aménagement', 'Plan d’aménagement'),
         ('Options', 'Options'),
     )

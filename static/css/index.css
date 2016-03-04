@@ -232,7 +232,28 @@
     width: 100%;
     height: auto;
 }
-
+@media screen and (max-width: 768px){
+    .carousel-inner .item .carousel-caption{
+        /*left: 0;*/
+        bottom: 50%;
+        height: 40%;
+        padding: 5px;
+        font-size: 14px;
+    }
+    .carousel_caption_title{
+        text-indent: -10px;
+        letter-spacing: 1.5px;
+        font-size: 20px;
+    }.carousel_caption_title .fa{
+        font-size: 15px;
+    }
+    .carousel-caption p{
+        display: hidden;
+    }
+    .carousel-control .fa{
+        top: 40%;
+    }
+}
 @media screen and (min-width: 768px) and (max-width: 991px){
     .boat_title{
         letter-spacing: 0;

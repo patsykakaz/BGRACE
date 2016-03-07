@@ -121,7 +121,7 @@
     </div>
 
     <div id='distributeurs-space' class='container'>
-        <div class='col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-6 col-xs-offset-3'>
+        <div class='col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-10 col-xs-offset-1'>
             <div class='row box' style='border:1px solid #d0031c;'>
                 <div class='col-md-4'>
                     <h4 class='text-center' style='margin-bottom:15px;'>
@@ -135,7 +135,7 @@
                         {% csrf_token %}
                         <select name='bassinNav'  class="form-control">
                             {% for bassin in bassins_navigation %}
-                                <option href='{{ bassin.title }}'>{{ bassin.title }}</option>
+                                <option href='{{ bassin.pk }}'>{{ bassin.title }}</option>
                             {% endfor %}
                         </select>
                         <div class='text-center' style='margin-top:8px;'>
@@ -151,9 +151,9 @@
                     <h4 class='text-center'>
                     {% if LANGUAGE_CODE == 'fr' %}
                             ou
-                        {% else %}
+                    {% else %}
                             or
-                        {% endif %}
+                    {% endif %}
                     </h4>
                     <form method='post' action='/distributeurs/'>
                         {% csrf_token %}
@@ -178,7 +178,7 @@
                 </div>
             </div>
         </div>
-        <div class='col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-6 col-xs-offset-3'>
+        <div class='col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1'>
             <div>
                 <a href='/services-pièces-détachées/'>
                 <div style='overflow:hidden; border:1px solid #777;'>

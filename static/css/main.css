@@ -9,6 +9,7 @@ a, a:hover, a:visited, a:active, a:focus{
     color: #d0031c;
 }
 h1,h2,h3,h4,h5,h6{
+    /*word-break: break-all;*/
     color: #d0031c;
 }
 h1{
@@ -33,6 +34,27 @@ h2{
     top: 47%;
     left: 48%;
     color: #d0031c;
+}
+
+#i18n{
+    position: relative;
+    z-index: 98;
+    height: 15px;
+    overflow: visible;
+}
+#i18n .form-group{
+    position: absolute;
+    z-index: 99;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    max-width: 150px;
+}
+#flag{
+    position: absolute;
+    z-index: 99;
+    right: 15px;
+    top: 10px;
 }
 
 #logo{

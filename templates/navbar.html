@@ -2,6 +2,11 @@
 
 <div class="navbar navbar-default" role="navigation">
     <div class="container">
+        <div id='i18n' class='col-md-12'>
+        {% include 'includes/language_selector.html' %}
+        </div>
+    </div>
+    <div class="container">
         <div id='logo' class='col-md-12'>
             <div class='logo_wing'></div>
             <a href='/'><img src='{% static 'img/logo/logobgarcha.jpg' %}' alt='logo_archambault' /></a>

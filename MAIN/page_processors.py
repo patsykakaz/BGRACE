@@ -25,7 +25,7 @@ def processor_home(request, page):
     return locals()
 
 @processor_for(Boat)
-def processor_home(request, page):
+def processor_boat(request, page):
     boat = Boat.objects.get(title=page.title)
     illustrations = BoatGalery.objects.filter(Boat=boat)
     palmares_all = BoatPalmares.objects.filter(Boat=boat)
@@ -34,14 +34,14 @@ def processor_home(request, page):
 
 
 @processor_for('occasions')
-def processor_home(request, page):
+def processor_occasions(request, page):
     occasions = Boat.objects.filter(occasion=True)
     for element in occasions:
         element.illustrations = BoatGalery.objects.filter(Boat=element)
     return locals()
 
 @processor_for('distributeurs')
-def processor_home(request, page):
+def processor_distributeur(request, page):
     distrib_pays_list = []
     for element in Distributeur.objects.all():
         if element.pays not in distrib_pays_list:
@@ -51,7 +51,7 @@ def processor_home(request, page):
         emptyPostData = True
     elif request.POST:
         if 'bassinNav' in request.POST:
-            distributeurs = Distributeur.objects.filter(bassin_navigation=BassinNav.objects.get(title=request.POST['bassinNav']))
+            distributeurs = Distributeur.objects.filter(bassin_navigation=BassinNav.objects.get(pk=request.POST['bassinNav']))
         elif 'country' in request.POST:
             distributeurs = Distributeur.objects.filter(pays=request.POST['country'])
         else:

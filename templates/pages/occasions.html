@@ -62,7 +62,7 @@
                     <div class='boat-item'>
                         <a href='{{ element.get_absolute_url }}'><div class='boat-price'>{{ element.price }}</div></a>
                         <a href='{{ element.get_absolute_url }}'>
-                            <img src='{{ MEDIA_URL }}{% thumbnail element.illustrations.0.image 600 300 %}' alt='illustration {{ element.title }}' />
+                            <img src='{{ MEDIA_URL }}{% thumbnail element.featured_image 600 300 %}' alt='illustration {{ element.title }}' />
                             <h4 class='boat-title'>{{ element.title }}</h4>
                             <div class='boat-baseline'>{{ element.baseline }}</div>
                         </a>

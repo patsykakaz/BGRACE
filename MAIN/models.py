@@ -81,6 +81,9 @@ class Boat(Page):
             self.in_menus = ['1']
         super(Boat, self).save(*args, **kwargs)
 
+    class Meta:
+        verbose_name = 'BATEAU'
+
 class BoatGalery(models.Model):
     Boat = models.ForeignKey("Boat")
     image = FileField(verbose_name=_("Image"),
@@ -88,6 +91,9 @@ class BoatGalery(models.Model):
         format="Image", max_length=255, null=True, blank=True)
     description = models.CharField(max_length=255, null=True, blank=True)
     display_size = models.IntegerField(default=6,help_text='taille de l\'image. Entrez un nombre pair, entre 2 et 12.',null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'GALLERIE (BATEAU)'
 
 class BoatDocumentation(models.Model):
     Boat = models.ForeignKey("Boat")
@@ -107,12 +113,17 @@ class BoatDocumentation(models.Model):
     alternative_doc_nature = models.CharField(max_length=255,
                                             null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'DOCUMENTATION (BATEAU)'
+
 class BoatPalmares(models.Model):
     Boat = models.ForeignKey("Boat")
     year = models.DateField()
     course = models.CharField(max_length=255)
     resultat = models.CharField(max_length=255)
 
+    class Meta:
+        verbose_name = 'PALMARES (BATEAU)'
 
 
 class BassinNav(Page):
@@ -126,16 +137,21 @@ class BassinNav(Page):
         self.in_menus = []
         super(BassinNav, self).save(*args, **kwargs)
 
+    class Meta:
+        verbose_name = 'BASSIN de NAVIGATION'
+
 class Distributeur(Page):
-    illustration = models.ImageField(upload_to=settings.MEDIA_ROOT
-                                        +'/distributeur/illustration', null=True, blank=True)
-    logo = models.ImageField(upload_to=settings.MEDIA_ROOT
-                                        +'/distributeur/logo_distributeur', null=True, blank=True)
-    bassin_navigation = models.ForeignKey("BassinNav")
+    illustration = FileField(verbose_name=_("Logo"),
+        upload_to=upload_to("MAIN.Distributeur", "illustration"),
+        format="Image", max_length=255, null=True, blank=True)
+    logo = FileField(verbose_name=_("Logo"),
+        upload_to=upload_to("MAIN.Distributeur", "Distributeur"),
+        format="Image", max_length=255, null=True, blank=True)
+    bassin_navigation = models.ManyToManyField("BassinNav")
     pays = models.CharField(max_length=255,null=False, blank=True)
     presentation = RichTextField(_("Presentation"))
     nom = models.CharField(max_length=255, null=True, blank=True)
-    adresse = models.CharField(max_length=255, null=True, blank=True)
+    adresse = models.TextField(null=True, blank=True)
     tel = models.CharField(max_length=255, null=True, blank=True)
     website = models.URLField(null=True, blank=True)
     mail = models.EmailField(null=True, blank=True)
@@ -146,8 +162,8 @@ class Distributeur(Page):
         self.in_menus = []
         super(Distributeur, self).save(*args, **kwargs)
 
-
-
+    class Meta:
+        verbose_name = 'DISTRIBUTEUR'
 
 
 

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags %}
+
+{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+
+{% block meta_keywords %}
+{% metablock %}
+    {% keywords_for page as keywords %}
+    {% for keyword in keywords %}
+        {% if not forloop.first %}, {% endif %}
+        {{ keyword }}
+    {% endfor %}
+{% endmetablock %}
+{% endblock %}
+
+{% block meta_description %}
+    {% metablock %}
+        {{ page.description }}
+    {% endmetablock %}
+{% endblock %}
+
+{% block extra_css %}
+<style type="text/css">
+</style>
+{% endblock %}
+
+{% block title %}
+    {% editable page.title %}{{ page.title }}{% endeditable %}
+{% endblock %}
+
+{% block main %}
+    <div id='liner'></div>
+    <div class='container'>
+    <h1>{{ page.title }}</h1>
+    </div>
+{% endblock %}

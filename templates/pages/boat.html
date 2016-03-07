@@ -1,23 +1,21 @@
 {% extends "base.html" %}
-{% load pages_tags mezzanine_tags i18n staticfiles %}
+{% load pages_tags mezzanine_tags keyword_tags i18n staticfiles %}
 
-{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+{% block meta_title %}{{ page.meta_title }}{% endblock %}
 
-{# {% block meta_keywords %} #}
-{# {% metablock %} #}
-    {# {% keywords_for page as keywords %} #}
-    {# {% for keyword in keywords %} #}
-        {# {% if not forloop.first %}, {% endif %} #}
-        {# {{ keyword }} #}
-    {# {% endfor %} #}
-{# {% endmetablock %} #}
-{# {% endblock %} #}
+{% block meta_keywords %}
+{% metablock %}
+{% keywords_for page as keywords %}
+{% for keyword in keywords %}
+    {% if not forloop.first %}, {% endif %}
+    {{ keyword }}
+{% endfor %}
+{% endmetablock %}
+{% endblock %}
 
-{# {% block meta_description %} #}
-    {# {% metablock %} #}
-        {# {{ page.description }} #}
-    {# {% endmetablock %} #}
-{# {% endblock %} #}
+{% block meta_description %}{% metablock %}
+{{ page.description }}
+{% endmetablock %}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static "css/boat.css" %}">
@@ -64,102 +62,102 @@
                     <i class='fa fa-long-arrow-right'></i> {{ boat.baseline }}
                 </h3>
             </div>
-            <div class='col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center'>
+            <div class='col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center'>
                 <div id='layer-sidecut'>
                     <img class='loader' src='{{ MEDIA_URL }}{{ boat.sidecut_image }}' alt='plan coupe bateau' {% if boat.sidecut_image_2 %}rel='{{ MEDIA_URL }}{{ boat.sidecut_image_2 }}'{% endif %}/>
                 </div>
             </div>
-            <div class='col-lg-4 col-md-4 col-sm-3 col-xs-12'>
-                <h4>CARACTERISTIQUES TECHNIQUES</h4>
+            <div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'>
+                <h4>{% if LANGUAGE_CODE == 'fr' %}CARACTERISTIQUES TECHNIQUES{% else %}SPECIFICATIONS{% endif %}</h4>
                 <div id='info-block'>
                     {% if boat.architecte %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Architecte : <strong>{{ boat.architecte }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Architecte :{% else %}Architect:{% endif %} <strong>{{ boat.architecte }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.longueur_HT %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Longueur H.T. : <strong>{{ boat.longueur_HT }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Longueur H.T. :{% else %}Length overall:{% endif %} <strong>{{ boat.longueur_HT }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.longueur_coque %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Longueur coque : <strong>{{ boat.longueur_coque }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Longueur coque :{% else %}Hull length:{% endif %} <strong>{{ boat.longueur_coque }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.largeur %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Largeur : <strong>{{ boat.largeur }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Largeur :{% else %}Beam:{% endif %} <strong>{{ boat.largeur }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.tirant_eau %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Tirant d'eau : <strong>{{ boat.tirant_eau }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Tirant d'eau :{% else %}Draft{% endif %} <strong>{{ boat.tirant_eau }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.deplacement %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Déplacement : <strong>{{ boat.deplacement }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Déplacement :{% else %}Displacement:{% endif %} <strong>{{ boat.deplacement }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.lest %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Lest : <strong>{{ boat.lest }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Lest :{% else %}Keel:{% endif %} <strong>{{ boat.lest }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.surface_voile %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Surface de voile standard : <strong>{{ boat.surface_voile }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Surface de voile standard :{% else %}Sail area:{% endif %} <strong>{{ boat.surface_voile }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.spi %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Spi : <strong>{{ boat.spi }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Spi :{% else %}Spinnaker area:{% endif %} <strong>{{ boat.spi }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.motorisation %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Motorisation : <strong>{{ boat.motorisation }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Motorisation :{% else %}Engine:{% endif %} <strong>{{ boat.motorisation }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.capacite_carburant %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Capacité carburant : <strong>{{ boat.capacite_carburant }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Capacité carburant :{% else %}Oil tank:{% endif %} <strong>{{ boat.capacite_carburant }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.capacite_eau %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Capacité eau : <strong>{{ boat.capacite_eau }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Capacité eau :{% else %}Water tank:{% endif %} <strong>{{ boat.capacite_eau }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.cabines %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Cabines : <strong>{{ boat.cabines }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Cabines :{% else %}Berths:{% endif %} <strong>{{ boat.cabines }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.certification_CE %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Certification C.E. : <strong>{{ boat.certification_CE }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Certification C.E. :{% else %}C.E. certifications:{% endif %} <strong>{{ boat.certification_CE }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.association_classe %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Association de classe : <strong>{{ boat.association_classe|richtext_filters|safe  }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Association de classe :{% else %}Class association:{% endif %} <strong>{{ boat.association_classe|richtext_filters|safe  }}</strong>
                     </div>
                     {% endif %}
                 </div>
@@ -176,7 +174,7 @@
                 {% endfor %}
                 {% endif %}
             </div>
-            <div id='boat_info' class='col-lg-4 col-md-4 col-sm-5 col-xs-12'>
+            <div id='boat_info' class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
                 <div class='text-justify'>
                     <h4>PRESENTATION</h4>
                     {{ boat.presentation|richtext_filters|safe }}
@@ -186,7 +184,7 @@
         {% if palmares_all %}
         <div id='boat2'>
             <div class='container text-center'>
-                <h2 class='text-center'> PALMARES </h2>
+                <h2 class='text-center'> {% if LANGUAGE_CODE == 'fr' %}PALMARES{% else %}RESULTS{% endif %} </h2>
                 <div style='display:inline-block; margin:auto;'>
                 {% for palmares in palmares_all %}
                     <div class='trophy'>
@@ -202,7 +200,7 @@
         </div>
         {% endif %}
         <div id='boat3' class='container'>
-            <h2 class='text-center'> GALLERIE </h2>
+            <h2 class='text-center'> {% if LANGUAGE_CODE == 'fr' %}GALLERIE{% else %}GALLERY{% endif %} </h2>
             <div class='row'>
             {% for illustration in illustrations %}
                 <a href='javascript:void(0)' data-toggle="modal" data-target="#modal-{{ forloop.counter0 }}">
@@ -271,11 +269,11 @@
                     {{ boat.baseline }}
                 </h3>
                 <h3 class='col-md-6 col-sm-6 col-xs-6 text-right text-muted'>
-                    Année de construction : <b>{{ boat.annee_construction }}</b>
+                    {% if LANGUAGE_CODE == 'fr' %}Année de construction :{% else %}Built in: {% endif%} <b>{{ boat.annee_construction }}</b>
                 </h3>
             </div>
             <div class='col-md-8'>
-                <h4> GALLERIE </h4>
+                <h4> {% if LANGUAGE_CODE == 'fr' %}GALLERIE{% else %}GALLERY{% endif %} </h4>
                 <div class='row'>
                 {% for illustration in illustrations %}
                     <a href='javascript:void(0)' data-toggle="modal" data-target="#modal-{{ forloop.counter0 }}">
@@ -330,96 +328,96 @@
                 </div>
             </div>
             <div class='col-md-4'>
-                <h4>CARACTERISTIQUES TECHNIQUES</h4>
+                <h4>{% if LANGUAGE_CODE == 'fr' %}CARACTERISTIQUES TECHNIQUES{% else %}SPECIFICATIONS{% endif %}</h4>
                 <div id='info-block'>
                     {% if boat.architecte %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Architecte : <strong>{{ boat.architecte }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Architecte :{% else %}Architect:{% endif %} <strong>{{ boat.architecte }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.longueur_HT %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Longueur H.T. : <strong>{{ boat.longueur_HT }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Longueur H.T. :{% else %}Length overall:{% endif %} <strong>{{ boat.longueur_HT }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.longueur_coque %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Longueur coque : <strong>{{ boat.longueur_coque }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Longueur coque :{% else %}Hull length:{% endif %} <strong>{{ boat.longueur_coque }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.largeur %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Largeur : <strong>{{ boat.largeur }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Largeur :{% else %}Beam:{% endif %} <strong>{{ boat.largeur }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.tirant_eau %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Tirant d'eau : <strong>{{ boat.tirant_eau }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Tirant d'eau :{% else %}Draft{% endif %} <strong>{{ boat.tirant_eau }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.deplacement %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Déplacement : <strong>{{ boat.deplacement }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Déplacement :{% else %}Displacement:{% endif %} <strong>{{ boat.deplacement }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.lest %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Lest : <strong>{{ boat.lest }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Lest :{% else %}Keel:{% endif %} <strong>{{ boat.lest }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.surface_voile %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Surface de voile standard : <strong>{{ boat.surface_voile }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Surface de voile standard :{% else %}Sail area:{% endif %} <strong>{{ boat.surface_voile }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.spi %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Spi : <strong>{{ boat.spi }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Spi :{% else %}Spinnaker area:{% endif %} <strong>{{ boat.spi }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.motorisation %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Motorisation : <strong>{{ boat.motorisation }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Motorisation :{% else %}Engine:{% endif %} <strong>{{ boat.motorisation }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.capacite_carburant %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Capacité carburant : <strong>{{ boat.capacite_carburant }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Capacité carburant :{% else %}Oil tank:{% endif %} <strong>{{ boat.capacite_carburant }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.capacite_eau %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Capacité eau : <strong>{{ boat.capacite_eau }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Capacité eau :{% else %}Water tank:{% endif %} <strong>{{ boat.capacite_eau }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.cabines %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Cabines : <strong>{{ boat.cabines }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Cabines :{% else %}Berths:{% endif %} <strong>{{ boat.cabines }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.certification_CE %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Certification C.E. : <strong>{{ boat.certification_CE }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Certification C.E. :{% else %}C.E. certifications:{% endif %} <strong>{{ boat.certification_CE }}</strong>
                     </div>
                     {% endif %}
                     {% if boat.association_classe %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        Association de classe : <strong>{{ boat.association_classe|richtext_filters|safe  }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Association de classe :{% else %}Class association:{% endif %} <strong>{{ boat.association_classe|richtext_filters|safe  }}</strong>
                     </div>
                     {% endif %}
                 </div>
@@ -446,7 +444,7 @@
         {% if palmares_all %}
         <div id='boat2'>
             <div class='container text-center'>
-                <h2 class='text-center'> PALMARES </h2>
+                <h2 class='text-center'> {% if LANGUAGE_CODE == 'fr' %}PALMARES{% else %}RESULTS{% endif %} </h2>
                 <div style='display:inline-block; margin:auto;'>
                 {% for palmares in palmares_all %}
                     <div class='trophy'>

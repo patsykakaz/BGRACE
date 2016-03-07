@@ -27,7 +27,7 @@ $(window).resize(function(){
 
 function logoWings(){
     refW = $('#logo').width();
-    W = (refW - $('#logo img').outerWidth())/2 - 5;
+    W = (refW - $('#logo img').outerWidth())/2 - 10;
     $('.logo_wing').each(function(){
         $(this).width(W);
     });

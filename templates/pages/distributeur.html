@@ -21,6 +21,15 @@
 
 {% block extra_css %}
 <style type="text/css">
+    h3{
+        margin-top: 0px;
+        margin-bottom: 10px;
+        font-size: 18px
+    }
+    h4{
+        margin-top: 20px;
+        color: #777;
+    }
 </style>
 {% endblock %}
 
@@ -31,6 +40,23 @@
 {% block main %}
     <div id='liner'></div>
     <div class='container'>
-    <h1>{{ page.title }}</h1>
+        <div class='row'>
+            <div class='col-md-3 col-md-offset-1'>
+                {% if page.illustration %}
+                    <img src='{{ MEDIA_URL }}{% thumbnail page.illustration 300 0 %}' alt='illustration' />
+                {% endif %}
+
+                {% if page.logo %}
+                    <img src='{{ MEDIA_URL }}{% thumbnail page.logo 300 0 %}' alt='illustration' />
+                {% endif %}
+            </div>
+            <div class='col-md-6 col-md-offset-1'>
+                <h1 style='margin-bottom:20px;'>{{ page.title|title }}</h1>
+                <h3>{{ page.pays|title }}</h3>
+                <h3>{% for element in page.bassin_navigation.all %}{{ element.title|capfirst }}{% if not forloop.last %}, {% endif %}{% endfor %}</h3>
+                <h4>{% if LANGUAGE_CODE == 'fr' %}Présentation{% else %}Presentation{% endif %}</h4>
+                <p>{{ page.presentation|richtext_filters|safe }}</p>
+            </div>
+        </div>
     </div>
 {% endblock %}

@@ -26,7 +26,7 @@ def processor_home(request, page):
 
 @processor_for(Boat)
 def processor_boat(request, page):
-    boat = Boat.objects.get(title=page.title)
+    boat = Boat.objects.get(id=page.id)
     illustrations = BoatGalery.objects.filter(Boat=boat)
     palmares_all = BoatPalmares.objects.filter(Boat=boat)
     documentation_all = BoatDocumentation.objects.filter(Boat=boat)
@@ -40,8 +40,13 @@ def processor_occasions(request, page):
         element.illustrations = BoatGalery.objects.filter(Boat=element)
     return locals()
 
-@processor_for('distributeurs')
+@processor_for(Distributeur)
 def processor_distributeur(request, page):
+    page = Distributeur.objects.get(id=page.id)
+    return locals()
+
+@processor_for('distributeurs')
+def processor_distributeurs(request, page):
     distrib_pays_list = []
     for element in Distributeur.objects.all():
         if element.pays not in distrib_pays_list:

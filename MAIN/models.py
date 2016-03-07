@@ -141,7 +141,7 @@ class BassinNav(Page):
         verbose_name = 'BASSIN de NAVIGATION'
 
 class Distributeur(Page):
-    illustration = FileField(verbose_name=_("Logo"),
+    illustration = FileField(verbose_name=_("Illustration"),
         upload_to=upload_to("MAIN.Distributeur", "illustration"),
         format="Image", max_length=255, null=True, blank=True)
     logo = FileField(verbose_name=_("Logo"),

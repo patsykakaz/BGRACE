@@ -228,6 +228,14 @@
 #distributeurs-space h3, #distributeurs-space h4{
     font-family: 'Paytone One', sans-serif;
 }
+#fake-box-mobile{
+    margin-top: 0;
+    border: none;
+}
+#fake-box-desktop{
+    overflow:hidden;
+    border: 1px solid #777;
+}
 #pieces_detachees_img{
     width: 100%;
     height: auto;
@@ -252,6 +260,14 @@
     }
     .carousel-control .fa{
         top: 40%;
+    }
+    #fake-box-mobile{
+        margin-top: 25px;
+        padding: 0;
+        border: 1px solid #777;
+    }
+    #fake-box-desktop{
+        border: none;
     }
 }
 @media screen and (min-width: 768px) and (max-width: 991px){

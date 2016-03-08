@@ -4,6 +4,10 @@ body{
     padding: 0;
 }
 
+
+.carousel-indicators{
+    bottom: -21px;
+}
 .navbar{
     margin: 0;
 }

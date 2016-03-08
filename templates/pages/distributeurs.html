@@ -21,6 +21,10 @@
 
 {% block extra_css %}
 <style type="text/css">
+    h4{
+        font-weight: bold;
+        color: #777;
+    }
     .distrib{
         padding: 20px;
         border: 4px solid #E7E7E7;
@@ -41,9 +45,14 @@
         <div class='row'>
             <h1 class='text-center'>{{ page.title|upper }}</h1>
             {% if emptyPostData %}
-                <div class='col-md-4 col-md-offset-4' style='padding:20px; border:1px solid #d0031c;'>
+                <div class='col-md-12 col-sm-12 col-xs-12'>
+                    <h3 class='text-center' style='margin-bottom:15px;'>
+                        {% if LANGUAGE_CODE == 'fr' %}Rechercher un distributeur <br />par : {% else %}Browse suppliers by:{% endif %}
+                    </h3>
+                </div>
+                <div class='col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1' style='padding:20px; border:1px solid #d0031c;'>
                     <h4 class='text-center' style='margin-bottom:15px;'>
-                        {% if LANGUAGE_CODE == 'fr' %}Trouvez un distributeur{% else %}Find a distributor{% endif %}
+                        {% if LANGUAGE_CODE == 'fr' %}Bassin de navigation{% else %}Navigation Area{% endif %}
                     </h4>
                     <form method='post' action=''>
                         {% csrf_token %}
@@ -56,7 +65,14 @@
                             <button type="submit" class="btn btn-xs btn-default">{% if LANGUAGE_CODE == 'fr' %}Chercher{% else %}fetch{% endif %}</button>
                         </div>
                     </form>
-                    <h4 class='text-center'>{% if LANGUAGE_CODE == 'fr' %}ou{% else %}or{% endif %}</h4>
+                </div>
+                <div class='col-md-12 col-sm-12 col-xs-12'>
+                    <h3 class='text-center' style='margin-bottom:15px;'>
+                        {% if LANGUAGE_CODE == 'fr' %}ou{% else %}or{% endif %}
+                    </h3>
+                </div>
+                <div class='col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1' style='padding:20px; border:1px solid #d0031c;'>
+                    <h4 class='text-center'>{% if LANGUAGE_CODE == 'fr' %}Pays{% else %}Country{% endif %}</h4>
                     <form method='post' action=''>
                         {% csrf_token %}
                         <select name='country'  class="form-control">
@@ -87,7 +103,7 @@
                         </h3>
                     {% else %}
                         <h3 class='text-center'>
-                            No distributor matches your query. 
+                            No supplier matches your query. 
                         </h3>
                     {% endif %}
                 {% else %}
@@ -119,7 +135,7 @@
                                         {% endif %}
                                         {% if element.logo %}
                                             <div class='sub-info text-center'>
-                                                <img style='margin:10px' src='{{ MEDIA_URL }}{% thumbnail element.logo 600 300 %}' alt='logo {{ element.title}}' />
+                                                <img style='margin:10px' src='{{ MEDIA_URL }}{% thumbnail element.logo 600 0 %}' alt='logo {{ element.title}}' />
                                             </div>
                                         {% endif %}
                                     {% else %}
@@ -140,7 +156,7 @@
                                         {% endif %}
                                         {% if element.logo %}
                                             <div class='sub-info text-center'>
-                                                <img style='margin:10px' src='{{ MEDIA_URL }}{% thumbnail element.logo 600 300 %}' alt='logo {{ element.title}}' />
+                                                <img style='margin:10px' src='{{ MEDIA_URL }}{% thumbnail element.logo 600 0 %}' alt='logo {{ element.title}}' />
                                             </div>
                                         {% endif %}
                                     {% endif %}

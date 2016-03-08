@@ -128,7 +128,7 @@
                         {% if LANGUAGE_CODE == 'fr' %}
                             Trouvez un distributeur
                         {% else %}
-                            Find a distributor
+                            Find a supplier
                         {% endif %}
                     </h4>
                     <form method='post' action='/distributeurs/'>
@@ -178,12 +178,12 @@
                 </div>
             </div>
         </div>
-        <div class='col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1'>
+        <div id='fake-box-mobile' class='col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1'>
             <div>
-                <a href='/services-pièces-détachées/'>
-                <div style='overflow:hidden; border:1px solid #777;'>
+                <a href='/service-entretien/'>
+                <div id='fake-box-desktop'>
                     <img id='pieces_detachees_img' src='{% static 'img/pieces_detachees.jpg' %}' alt='illustration pièces détachées' />
-                    <h4 class='text-center' style='font-size:14px; color:#777;'>
+                    <h4 class='text-center' style='padding:0 15px;font-size:14px; color:#777;'>
                         {% if LANGUAGE_CODE == 'fr' %}
                             Pièces & entretien <br />
                         {% else %}

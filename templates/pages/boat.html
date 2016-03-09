@@ -54,6 +54,33 @@
 
 {% block main %}
     {% if not boat.occasion %}
+        <!-- Modal CONTACT -->
+        <div class="modal fade" id="modal-contact" tabindex="-1" role="dialog" aria-labelledby="modal-contact-label">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-center" id="modal-contact-label">
+                            Contact
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method='POST' action=''>
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <input type='hidden' name='hiddenSource' value='Boat' />
+                            <input type='hidden' name='hiddenTarget' value='{{ boat.id }}' />
+                            {% buttons %}
+                                <button type="submit" class="btn btn-success" style='margin-top:10px;'>
+                                    {% if LANGUAGE_CODE == 'fr' %}Envoyer{% else %}Send{% endif %}
+                                </button>
+                            {% endbuttons %}
+                        </form>
+                    </div>
+                </div>
+            </div>-
+        </div>
+        <!-- ./ Modal CONTACT -->
         <div id='liner' class='red'></div>
         <div id='boat1' class='container'>
             <div class='col-md-12'>
@@ -157,7 +184,14 @@
                     {% if boat.association_classe %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        {% if LANGUAGE_CODE == 'fr' %}Association de classe :{% else %}Class association:{% endif %} <strong>{{ boat.association_classe|richtext_filters|safe  }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Association de classe :{% else %}Class association:{% endif %}
+                        <strong>
+                        {% if 'www' in boat.association_classe or 'http' in boat.association_classe %}
+                            <a href='//{{ boat.association_classe }}' target='blank' >{{ boat.association_classe }}</a>
+                        {% else %}
+                            {{ boat.association_classe|richtext_filters|safe  }}
+                        {% endif %}
+                        </strong>
                     </div>
                     {% endif %}
                 </div>
@@ -258,6 +292,33 @@
             </div>
         </div>
     {% else %}
+        <!-- Modal CONTACT -->
+        <div class="modal fade" id="modal-contact" tabindex="-1" role="dialog" aria-labelledby="modal-contact-label">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-center" id="modal-contact-label">
+                            Contact
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method='POST' action=''>
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <input type='hidden' name='hiddenSource' value='Occasion' />
+                            <input type='hidden' name='hiddenTarget' value='{{ boat.id }}' />
+                            {% buttons %}
+                                <button type="submit" class="btn btn-success" style='margin-top:10px;'>
+                                    {% if LANGUAGE_CODE == 'fr' %}Envoyer{% else %}Send{% endif %}
+                                </button>
+                            {% endbuttons %}
+                        </form>
+                    </div>
+                </div>
+            </div>-
+        </div>
+        <!-- ./ Modal CONTACT -->
         <div id='liner' class='occasion'></div>
         <div id='boat1' class='container'>
             <div class='row'>
@@ -420,7 +481,14 @@
                     {% if boat.association_classe %}
                     <div class='info-unit'>
                         <i class='fa fa-caret-right'></i>
-                        {% if LANGUAGE_CODE == 'fr' %}Association de classe :{% else %}Class association:{% endif %} <strong>{{ boat.association_classe|richtext_filters|safe  }}</strong>
+                        {% if LANGUAGE_CODE == 'fr' %}Association de classe :{% else %}Class association:{% endif %}
+                        <strong>
+                        {% if 'www' in boat.association_classe or 'http' in boat.association_classe %}
+                            <a href='//{{ boat.association_classe }}' target='blank' >{{ boat.association_classe }}</a>
+                        {% else %}
+                            {{ boat.association_classe|richtext_filters|safe  }}
+                        {% endif %}
+                        </strong>
                     </div>
                     {% endif %}
                 </div>

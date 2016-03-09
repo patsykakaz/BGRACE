@@ -83,7 +83,7 @@
     <div id='boats' class='container'>
         {% for Boat in Boats %}
             <a href='{{ Boat.get_absolute_url }}' class='boat_container'>
-                <h5 class='text-center'>Découvrir</h5>
+                <h5 class='text-center'><i class='fa fa-angle-right' style='color:#777;'></i>  {% if LANGUAGE_CODE == 'fr' %}Découvrir{% else %}More{% endif %}</h5>
                 <div class='boat_box text-center'>
                     <img src="{{ MEDIA_URL }}{% thumbnail Boat.sidecut_image 200 0 %}" alt='plan coupe bateau' />
                     <h4 class='boat_title'>{{ Boat.title }}</h4>
@@ -183,7 +183,7 @@
                 <a href='/service-entretien/'>
                 <div id='fake-box-desktop'>
                     <img id='pieces_detachees_img' src='{% static 'img/pieces_detachees.jpg' %}' alt='illustration pièces détachées' />
-                    <h4 class='text-center' style='padding:0 15px;font-size:14px; color:#777;'>
+                    <h4 class='text-center' style='padding:0font-size:14px; color:#777;'>
                         {% if LANGUAGE_CODE == 'fr' %}
                             Pièces & entretien <br />
                         {% else %}

@@ -9,6 +9,7 @@ from mezzanine.pages.page_processors import processor_for
 from mezzanine.core.request import current_request
 from mezzanine.blog.models import BlogPost
 from .models import *
+from forms import ContactForm
 
 @processor_for('/')
 def processor_home(request, page):
@@ -30,6 +31,7 @@ def processor_boat(request, page):
     illustrations = BoatGalery.objects.filter(Boat=boat)
     palmares_all = BoatPalmares.objects.filter(Boat=boat)
     documentation_all = BoatDocumentation.objects.filter(Boat=boat)
+    form = ContactForm()
     return locals()
 
 
@@ -43,6 +45,7 @@ def processor_occasions(request, page):
 @processor_for(Distributeur)
 def processor_distributeur(request, page):
     page = Distributeur.objects.get(id=page.id)
+    form = ContactForm()
     return locals()
 
 @processor_for('distributeurs')

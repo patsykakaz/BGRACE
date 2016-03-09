@@ -271,6 +271,9 @@
     }
 }
 @media screen and (min-width: 768px) and (max-width: 991px){
+    .fa-angle-right{
+        display: none;
+    }
     .boat_title{
         letter-spacing: 0;
         font-size: 13px;

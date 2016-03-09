@@ -8,4 +8,4 @@ class ContactForm(forms.Form):
     name = forms.CharField(label='Identité/Identity')
     mail = forms.CharField(label='Email/Mail', widget=forms.EmailInput)
     phone = forms.CharField(label='Téléphone/Phone')
-    content = forms.TextField(label='Message')
+    content = forms.CharField(label='Message', widget=forms.Textarea)

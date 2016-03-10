@@ -10,12 +10,19 @@ from django.core.mail import send_mail
 
 from mezzanine.utils.urls import login_redirect, next_url
 from .models import *
+from forms import *
 
-def message(request):
+def contact(request):
     if request.POST:
         form = contactForm(request)
         if form.is_valid():
-            pass
+            source = request.POST['hiddenSource']
+            if source == 'Contact':
+                pass
+            elif source == 'Boat':
+                print "ok"
+            elif source == 'Distributeur':
+                pass
         else:
             source = request.POST['hiddenSource']
             form = contactForm(request)

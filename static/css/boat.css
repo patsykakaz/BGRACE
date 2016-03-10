@@ -23,6 +23,21 @@ h4{
 }
 
 
+#price-trigger, #price-trigger:hover, #price-trigger:focus{
+    opacity: 1;
+    color: #777;
+    -moz-transition: all .6s ease-out;
+    -webkit-transition: all .6s ease-out;
+    -o-transition: all .6s ease-out;
+    transition: all .6s ease-out;
+}#price-trigger.fade{
+    opacity: 0;
+    -moz-transition: all .6s ease-out;
+    -webkit-transition: all .6s ease-out;
+    -o-transition: all .6s ease-out;
+    transition: all .6s ease-out;
+}
+
 #boat1{
     padding-bottom: 30px;
 }

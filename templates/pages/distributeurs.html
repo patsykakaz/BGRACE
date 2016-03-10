@@ -128,11 +128,6 @@
                                                 BASSIN DE NAVIGATION : <strong>{% for bassin in element.bassin_navigation.all %}{{ bassin }}{% if not forloop.last %}, {% endif %}{% endfor %}</strong>
                                             </div>
                                         {% endif %}
-                                        {% if element.adresse %}
-                                            <div class='sub-info'>
-                                                ADRESSE : <strong>{{ element.adresse }}</strong>
-                                            </div>
-                                        {% endif %}
                                         {% if element.logo %}
                                             <div class='sub-info text-center'>
                                                 <img style='margin:10px' src='{{ MEDIA_URL }}{% thumbnail element.logo 600 0 %}' alt='logo {{ element.title}}' />
@@ -147,11 +142,6 @@
                                         {% if element.bassin_navigation %}
                                             <div class='sub-info'>
                                                 NAVIGATION AREA: <strong>{% for bassin in element.bassin_navigation.all %}{{ bassin }}{% if not forloop.last %}, {% endif %}{% endfor %}</strong>
-                                            </div>
-                                        {% endif %}
-                                        {% if element.adresse %}
-                                            <div class='sub-info'>
-                                                ADRESS: <strong>{{ element.adresse }}</strong>
                                             </div>
                                         {% endif %}
                                         {% if element.logo %}

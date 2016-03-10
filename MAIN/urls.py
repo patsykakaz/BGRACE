@@ -57,6 +57,7 @@ urlpatterns += [
     # NOTE: Don't forget to import the view function too!
 
     url("^$", indexView, {"slug": "/"}, name="home"),
+    url("^contact/$", 'MAIN.views.contact', name="contact"),
 
     # HOMEPAGE FOR A BLOG-ONLY SITE
     # -----------------------------

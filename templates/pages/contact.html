@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags %}
+
+{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+
+{% block meta_keywords %}
+{% metablock %}
+    {% keywords_for page as keywords %}
+    {% for keyword in keywords %}
+        {% if not forloop.first %}, {% endif %}
+        {{ keyword }}
+    {% endfor %}
+{% endmetablock %}
+{% endblock %}
+
+{% block meta_description %}
+    {% metablock %}
+        {{ page.description }}
+    {% endmetablock %}
+{% endblock %}
+
+{% block extra_css %}
+<style type="text/css">
+</style>
+{% endblock %}
+
+{% block title %}
+    {% editable page.title %}{{ page.title }}{% endeditable %}
+{% endblock %}
+
+{% block main %}
+    <div id='liner'></div>
+    <div class='container'>
+    {% if success %}
+        {% if LANGUAGE_CODE == 'fr' %}mail envoyé avec succès{% else %}
+    {% else %}
+        <form method='POST' action='{% url 'contact' %}' class=' text-center'>
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type='hidden' name='hiddenSource' value='Boat' />
+            <input type='hidden' name='hiddenTarget' value='{{ boat.id }}' />
+            {% buttons %}
+                <button type="submit" class="btn btn-default" style='margin-top:10px;'>
+                    {% if LANGUAGE_CODE == 'fr' %}Envoyer{% else %}Send{% endif %}
+                </button>
+            {% endbuttons %}
+        </form>
+    {% endif %}
+    </div>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags bootstrap3 %}
 
-{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+{% block meta_title %}{% if page %}{{ page.meta_title }}{% endif %}{% endblock %}
 
 {% block meta_keywords %}
 {% metablock %}
@@ -30,6 +30,15 @@
         margin-top: 20px;
         color: #777;
     }
+
+    #contact-distributeur{
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #777;
+    }
+    .contact-distributeur{
+        margin-bottom: 5px;
+    }
 </style>
 {% endblock %}
 
@@ -38,24 +47,127 @@
 {% endblock %}
 
 {% block main %}
+
+    <!-- Modal CONTACT -->
+    <div class="modal fade" id="modal-contact" tabindex="-1" role="dialog" aria-labelledby="modal-contact-label">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="modal-contact-label">
+                        Contact
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form method='POST' action='{% url 'contact' %}' class='text-left'>
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <input type='hidden' name='hiddenSource' value='Distributeur' />
+                        <input type='hidden' name='hiddenTarget' value='{{ page.id }}' />
+                        <div class="form-group">
+                            <label for="sel1">
+                                {% if LANGUAGE_CODE == 'fr' %}
+                                    Sujet du message
+                                {% else %}
+                                    About ?
+                                {% endif %}
+                            </label>
+                            <select name='sujet' class="form-control" id="sel1">
+                                {% if LANGUAGE_CODE == 'fr' %}
+                                    <option value='Divers'>
+                                        Divers
+                                    </option>
+                                    <option value='Bateau Neuf'>
+                                        Bateau Neuf
+                                    </option>
+                                    <option value='Occasion'>
+                                        Bateau Occasion
+                                    </option>
+                                    <option value='SAV'>
+                                        Pièces & Entretien
+                                    </option>
+                                {% else %}
+                                    <option value='Divers'>
+                                        Unspecified
+                                    </option>
+                                    <option value='New Boat'>
+                                        New boat
+                                    </option>
+                                    <option value='Pre-owned Boat'>
+                                        Pre-owned boat
+                                    </option>
+                                    <option value='Spare - maintenance'>
+                                        Spare & maintenance
+                                    </option>
+                                {% endif %}
+                            </select>
+                        </div>
+                        {% buttons %}
+                            <button type="submit" class="btn btn-default" style='margin-top:10px;'>
+                                {% if LANGUAGE_CODE == 'fr' %}Envoyer{% else %}Send{% endif %}
+                            </button>
+                        {% endbuttons %}
+                    </form>
+                </div>
+            </div>
+        </div>-
+    </div>
+    <!-- ./ Modal CONTACT -->
     <div id='liner'></div>
     <div class='container'>
         <div class='row'>
+            <h1 class='col-md-7 col-md-offset-5'>{{ page.title|title }}</h1>
             <div class='col-md-3 col-md-offset-1'>
                 {% if page.illustration %}
-                    <img src='{{ MEDIA_URL }}{% thumbnail page.illustration 300 0 %}' alt='illustration' />
+                    <img class='thumbnail' src='{{ MEDIA_URL }}{% thumbnail page.illustration 300 0 %}' alt='illustration' />
                 {% endif %}
-
                 {% if page.logo %}
-                    <img src='{{ MEDIA_URL }}{% thumbnail page.logo 300 0 %}' alt='illustration' />
+                    <img class='thumbnail' src='{{ MEDIA_URL }}{% thumbnail page.logo 300 0 %}' alt='illustration' />
                 {% endif %}
             </div>
             <div class='col-md-6 col-md-offset-1'>
-                <h1 style='margin-bottom:20px;'>{{ page.title|title }}</h1>
-                <h3>{{ page.pays|title }}</h3>
-                <h3>{% for element in page.bassin_navigation.all %}{{ element.title|capfirst }}{% if not forloop.last %}, {% endif %}{% endfor %}</h3>
-                <h4>{% if LANGUAGE_CODE == 'fr' %}Présentation{% else %}Presentation{% endif %}</h4>
+                <h3>{{ page.pays|upper }}</h3>
+                <h3>{% for element in page.bassin_navigation.all %}{{ element.title|lower|capfirst }}{% if not forloop.last %}, {% endif %}{% endfor %}</h3>
                 <p>{{ page.presentation|richtext_filters|safe }}</p>
+                <div id='contact-distributeur'>
+                    <btn class='btn btn-default btn-contact' href='javascript:void(0)' data-toggle="modal" data-target="#modal-contact">
+                        {% if LANGUAGE_CODE == 'fr' %}
+                            Contacter ce distributeur
+                        {% else %}
+                            Contact this retailer
+                        {% endif %}
+                    </btn>
+                    {% if page.nom %}
+                        <div class='contact-distributeur'>
+                            <b>{% if LANGUAGE_CODE == 'fr' %}Contact : {% else %} Contact: {% endif %}</b> {{ page.nom }}
+                        </div>
+                    {% endif %} 
+                    {% if page.adresse %}
+                        <div class='contact-distributeur'>
+                            <b>{% if LANGUAGE_CODE == 'fr' %}Adresse : {% else %}Adress: {% endif %}</b> {{ page.adresse }}
+                        </div>
+                    {% endif %} 
+                    {% if page.tel %}
+                        <div class='contact-distributeur'>
+                            <b>{% if LANGUAGE_CODE == 'fr' %}Téléphone : {% else %}Phone: {% endif %}</b> {{ page.tel }}
+                        </div>
+                    {% endif %} 
+                    {% if page.website %}
+                        <div class='contact-distributeur'>
+                            <b>{% if LANGUAGE_CODE == 'fr' %}Site Web : {% else %}Website: {% endif %}</b> <a href='{{ page.website }}' target='blank'>{{ page.website }}</a>
+                        </div>
+                    {% endif %} 
+                    {% if page.mail %}
+                        <div class='contact-distributeur'>
+                            <b>{% if LANGUAGE_CODE == 'fr' %}Email : {% else %}eMail: {% endif %}</b> {{ page.mail }}
+                        </div>
+                    {% endif %} 
+                    {% if page.horaires %}
+                        <div class='contact-distributeur'>
+                            <b>{% if LANGUAGE_CODE == 'fr' %}Horaires : {% else %}Hours {% endif %}</b> {{ page.horaires }}
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

@@ -38,6 +38,15 @@ body{
     color: white;
 }
 
+.btn-contact{
+    background-color: #d0031c;
+    border: 1px solid #d0031c;
+    color: white;
+}.btn-contact:hover{
+    background-color: white;
+    border: 1px solid #d0031c;
+    color: #d0031c;
+}
 
 #alt-search{
     /*display: none;*/

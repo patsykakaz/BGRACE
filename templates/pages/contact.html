@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags %}
+{% load i18n mezzanine_tags blog_tags keyword_tags bootstrap3 %}
 
-{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+{% block meta_title %}{% if page %}{{ page.meta_title }}{% endif %}{% endblock %}
 
 {% block meta_keywords %}
 {% metablock %}
@@ -31,20 +31,89 @@
 {% block main %}
     <div id='liner'></div>
     <div class='container'>
-    {% if success %}
-        {% if LANGUAGE_CODE == 'fr' %}mail envoyé avec succès{% else %}
-    {% else %}
-        <form method='POST' action='{% url 'contact' %}' class=' text-center'>
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            <input type='hidden' name='hiddenSource' value='Boat' />
-            <input type='hidden' name='hiddenTarget' value='{{ boat.id }}' />
-            {% buttons %}
-                <button type="submit" class="btn btn-default" style='margin-top:10px;'>
-                    {% if LANGUAGE_CODE == 'fr' %}Envoyer{% else %}Send{% endif %}
-                </button>
-            {% endbuttons %}
-        </form>
-    {% endif %}
+        <h1 class='text-center'>CONTACT</h1>
+        <div class='row'>
+            <div class='col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+                {% if success %}
+                    <h2 class='text-center'>
+                    {% if LANGUAGE_CODE == 'fr' %}
+                        Votre demande a bien été prise en compte. <br />
+                        Merci. 
+                    {% else %}
+                        Thank you for your message. <br />
+                        Someone will contact you shortly to answer your request. 
+                    {% endif %}
+                    </h2>
+                {% else %}
+                    {% if error %}
+                        <h1>
+                            {% if LANGUAGE_CODE == 'fr' %}
+                                Une erreur s'est produite. <br />
+                                En cas de persistance du problème, vous pouvez nous envoyer un message à l'adresse suivante : <br />
+                                <a href='mailto:info@bgrace.fr'>info@bgrace.fr</a>
+                            {% else %}
+                                An error occured. <br />
+                                Should this issue persist 
+                                you can send us a message on this adress : <br >
+                                <a href='mailto:info@bgrace.fr'>info@bgrace.fr</a>
+                            {% endif %}
+                        </h1>
+                    {% endif %}
+                    <form method='POST' action='{% url 'contact' %}' class='text-left'>
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        {% if source %}
+                            <input type='hidden' name='hiddenSource' value='{{ source }}' />
+                        {% else %}
+                            <input type='hidden' name='hiddenSource' value='Contact' />
+                        {% endif %}
+                        <input type='hidden' name='hiddenTarget' value='{{ boat.id }}' />
+                        <div class="form-group">
+                            <label for="sel1">
+                                {% if LANGUAGE_CODE == 'fr' %}
+                                    Sujet du message
+                                {% else %}
+                                    About ?
+                                {% endif %}
+                            </label>
+                            <select name='sujet' class="form-control" id="sel1">
+                                {% if LANGUAGE_CODE == 'fr' %}
+                                    <option value='Divers'>
+                                        Divers
+                                    </option>
+                                    <option value='Bateau Neuf'>
+                                        Bateau Neuf
+                                    </option>
+                                    <option value='Occasion'>
+                                        Bateau Occasion
+                                    </option>
+                                    <option value='SAV'>
+                                        Pièces & Entretien
+                                    </option>
+                                {% else %}
+                                    <option value='Divers'>
+                                        Unspecified
+                                    </option>
+                                    <option value='New Boat'>
+                                        New boat
+                                    </option>
+                                    <option value='Pre-owned Boat'>
+                                        Pre-owned boat
+                                    </option>
+                                    <option value='Spare - maintenance'>
+                                        Spare & maintenance
+                                    </option>
+                                {% endif %}
+                            </select>
+                        </div>
+                        {% buttons %}
+                            <button type="submit" class="btn btn-default" style='margin-top:10px;'>
+                                {% if LANGUAGE_CODE == 'fr' %}Envoyer{% else %}Send{% endif %}
+                            </button>
+                        {% endbuttons %}
+                    </form>
+                {% endif %}
+            </div>
+        </div>
     </div>
 {% endblock %}

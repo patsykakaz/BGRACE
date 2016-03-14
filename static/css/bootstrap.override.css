@@ -39,8 +39,10 @@ body{
 }
 
 .btn-contact{
+    margin: 10px 0;
     background-color: #d0031c;
     border: 1px solid #d0031c;
+    border-radius: 0;
     color: white;
 }.btn-contact:hover{
     background-color: white;

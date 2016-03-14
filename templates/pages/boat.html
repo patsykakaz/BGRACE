@@ -46,7 +46,7 @@
             },1500);
             $('#price-trigger').click(function(){
                 if($('#price').attr('rel') != 'OFF'){
-                    $('#price').fadeOut();
+                    $('#price').removeClass('btn').fadeOut().css('border-color','white');
                     rel = $('#price-trigger').attr('rel');
                     setTimeout(function(){
                         $('#price').attr('rel','OFF');
@@ -117,6 +117,7 @@
                     </a>
                 </h3>
             </div>
+            <div class='col-md-12' style='height:0px;'></div>
             {% endif %}
             <div class='col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center'>
                 <div id='layer-sidecut'>
@@ -400,15 +401,6 @@
                 {% endfor %}
                 </div>
             </div>
-            <div class='col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center'>
-                <btn class='btn btn-default btn-contact' href='javascript:void(0)' data-toggle="modal" data-target="#modal-contact">
-                    {% if LANGUAGE_CODE == 'fr' %}
-                        Contacter Archambault au sujet de ce modèle.
-                    {% else %}
-                        Contact Archambault about this boat
-                    {% endif %}
-                </btn>
-            </div>
             <div class='col-md-4'>
                 <h4>{% if LANGUAGE_CODE == 'fr' %}CARACTERISTIQUES TECHNIQUES{% else %}SPECIFICATIONS{% endif %}</h4>
                 <div id='info-block'>
@@ -510,8 +502,17 @@
                     </div>
                     {% endif %}
                 </div>
+                <div style='margin:20px 0 0 0';>
+                    <btn class='btn btn-default btn-contact' href='javascript:void(0)' data-toggle="modal" data-target="#modal-contact">
+                        {% if LANGUAGE_CODE == 'fr' %}
+                            Contacter Archambault au sujet de ce modèle.
+                        {% else %}
+                            Contact Archambault about this boat
+                        {% endif %}
+                    </btn>
+                </div>
                 {% if documentation_all %}
-                <h4>DOCUMENTATION</h4>
+                <h4 style='margin-top:10px;'>DOCUMENTATION</h4>
                 {% for doc in documentation_all %}
                     <a class='doc_box' href='{{ MEDIA_URL}}{{ doc.fileTarget }}' target='blank'>
                         {% if doc.doc_nature %}
@@ -523,7 +524,7 @@
                 {% endfor %}
                 {% endif %}
             </div>
-            <div id='boat_info' class='col-md-8 text-justify'>
+            <div id='boat_info' class='col-md-12 text-justify' style='margin:15px 0;'>
                 <div class='text-justify'>
                     <h4>PRESENTATION</h4>
                     {{ boat.presentation|richtext_filters|safe }}

@@ -42,7 +42,7 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 {% for element in highlights %}
-                    <div class="item {% if forloop.counter0 == 0 %}active{% endif %}">
+                    <a class="item {% if forloop.counter0 == 0 %}active{% endif %}" href='{{ element.get_absolute_url }}'>
                         <img src='{{ MEDIA_URL }}{% thumbnail element.featured_image 1200 400 %}' alt='illustration highlight {{ element.title }}' />
                         <div class="carousel-caption">
                             <h3 class='carousel_caption_title'>
@@ -50,7 +50,7 @@
                             </h3>
                             <p> {{ element.baseline|lower|capfirst }} </p>
                         </div>
-                    </div>
+                    </a>
                 {% endfor %}
             </div>
 
@@ -65,20 +65,6 @@
             </a>
         </div>
     </div>
-    <div class='container'>
-        <div class='row'>
-            <div class='col-md-12'>
-            {# {% block breadcrumbs %} #}
-                {# <ul class="breadcrumb"> #}
-                {# {% spaceless %} #}
-                {# {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %} #}
-                {# {% endspaceless %} #}
-                {# </ul> #}
-            {# {% endblock %} #}
-            </div>
-        </div>
-    </div>
-    {% block title %}{% endblock %}
 
     <div id='boats' class='container'>
         {% for Boat in Boats %}
@@ -128,7 +114,7 @@
                         {% if LANGUAGE_CODE == 'fr' %}
                             Trouvez un distributeur
                         {% else %}
-                            Find a supplier
+                            Find a retailer
                         {% endif %}
                     </h4>
                     <form method='post' action='/distributeurs/'>

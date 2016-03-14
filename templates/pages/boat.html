@@ -80,13 +80,13 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <h3 class='text-center' style='margin: 15px 0;'>
+                    <h4 class='text-center' style='margin: 15px 0;' style='color:#777;'>
                         {% if LANGUAGE_CODE == 'fr' %}
-                        Merci de remplir ce formulaire afin que nous puissions vous recontacter.
+                        Merci de remplir ce formulaire afin <br /> que nous puissions vous recontacter.
                         {% else %}
-                        Please fill this form and we will contact shortly. 
+                        Please fill this form and <br />we will contact you shortly. 
                         {% endif %}
-                    </h3>
+                    </h4>
                     <form method='POST' action='{% url 'contact' %}' class='text-left'>
                         {% csrf_token %}
                         {% bootstrap_form form %}

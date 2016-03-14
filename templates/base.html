@@ -78,37 +78,25 @@
 </div>
 {% endif %}
 {% endnevercache %}
+</div>
 
-
-
+<div id='searchScreen' style='display:none;'>
+    <btn id='btn-search-close'>
+        <i class='fa fa-close fa-lg'></i>
+    </btn>
+    {% include 'includes/search_form.html' %}
 </div>
 
 {% block main %}
     {% block title %}{% endblock %}
 {% endblock %}
 
-<div class="col-md-12 right hide">
-    {% nevercache %}
-    {% include "includes/language_selector.html" %}
-    {% include "includes/user_panel.html" %}
-    {% endnevercache %}
-    <div class="panel panel-default">
-    <div class="panel-body">
-    {% block right_panel %}
-    {% ifinstalled mezzanine.twitter %}
-    {% include "twitter/tweets.html" %}
-    {% endifinstalled %}
-    {% endblock %}
-    </div>
-    </div>
-</div>
-
 <div id='hallmark'>
     <img src='{% static "img/hallmark.png" %}' alt='logo-hallmark' />
 </div>
 <div id='footer-liner'></div>
 <footer>
-    <div class="container">
+    <div class="container text-center">
         <div class='col-md-10 col-sm-10 col-xs-10 text-center'>
             {% page_menu "pages/menus/footer.html" %}
         </div>

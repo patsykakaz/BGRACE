@@ -36,6 +36,27 @@ h2{
     color: #d0031c;
 }
 
+#searchScreen{
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #d0031c;
+    opacity: .9;
+}
+#btn-search-close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+}#btn-search-close i{
+    color: #d0031c;
+}
+
 #i18n{
     position: relative;
     z-index: 98;

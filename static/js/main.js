@@ -6,6 +6,13 @@ $(document).ready(function(){
     if($('#liner').hasClass('red') || !$('#liner').length){
         $('form>.form-group>input.form-control').addClass('red');
     }
+    $('#searchScreen form').css('margin-top',($(window).height()-$('#searchScreen form').outerHeight())/2);
+    $('#btn-search').click(function(){
+        $("#searchScreen").fadeIn();
+    });
+    $("#btn-search-close").click(function(){
+        $("#searchScreen").fadeOut();
+    });
 });
 
 $(window).load(function(){

@@ -9,6 +9,7 @@ $(document).ready(function(){
     $('#searchScreen form').css('margin-top',($(window).height()-$('#searchScreen form').outerHeight())/2);
     $('#btn-search').click(function(){
         $("#searchScreen").fadeIn();
+        $('#searchScreen .form-control').focus();
     });
     $("#btn-search-close").click(function(){
         $("#searchScreen").fadeOut();

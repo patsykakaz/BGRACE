@@ -1,8 +1,15 @@
 {% load mezzanine_tags i18n %}
 <form action="{% url "search" %}" role="search">
-
+<div class='text-center' style='color:white'>
+    {% if LANGUAGE_CODE == 'fr' %}
+        Tapez votre recherche puis appuyez sur "Entrée"
+    {% else %}
+        Search anything and hit Enter
+    {% endif %}
+</div>
 <div class="form-group">
     <input class="form-control" placeholder="{% if LANGUAGE_CODE == 'fr' %}Rechercher{% else %}Search{% endif %}" type="text" name="q" value="{{ request.REQUEST.q }}" style='margin:auto;'>
+    {# <input class="form-control" type='submit' /> #}
 </div>
 
 {% if search_model_choices %}

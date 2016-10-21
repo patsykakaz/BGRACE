@@ -59,7 +59,7 @@ def processor_distributeurs(request, page):
         emptyPostData = True
     elif request.POST:
         if 'bassinNav' in request.POST:
-            distributeurs = Distributeur.objects.filter(bassin_navigation=BassinNav.objects.get(pk=request.POST['bassinNav']))
+            distributeurs = Distributeur.objects.filter(bassin_navigation=BassinNav.objects.get(pk=int(request.POST['bassinNav'])))
         elif 'country' in request.POST:
             distributeurs = Distributeur.objects.filter(pays=request.POST['country'])
         else:

@@ -22,13 +22,14 @@ def contact(request):
                 try:
                     subject= 'Demande Contact via site Web'
                     from_email = settings.MAIL_SENDER
-                    text_content = 'TEST BG RACE'
+                    text_content = 'MAIL BG RACE'
                     html_content = '<p> Une demande de renseignement a été formulée depuis le site ARCHAMBAULT BY BG RACE depuis la page <b> CONTACT</b> <br /> Sujet -> <b> '+ request.POST['sujet'] +'</b> </p> <b> <br /> INFORMATIONS CLIENT </b> <b>IDENTITÉ</b> : '+ request.POST['name'] +'  <br /> <b>MAIL</b> : '+ request.POST['mail'] +' <br /> <b>TEL</b> : '+ request.POST['phone'] +'<br /> <b>MESSAGE</b> : '+ request.POST['content']
                     msg = EmailMultiAlternatives(subject, text_content, from_email, [settings.MAIL_RECIPIENT])
                     msg.attach_alternative(html_content, "text/html")
                     msg.send()
                     success = True
                 except:
+		    print 'une erreur est intervenue dans l envoie du mail'
                     error = True
             elif source == 'Distributeur':
                 try: 
@@ -36,11 +37,10 @@ def contact(request):
                 except: 
                     distribTarget = 'Non spécifié / unknown'
                     error = True
-                print distribTarget
                 try:
                     subject= 'DEMANDE D\'INFOS DEPUIS ARCHAMBAULT by BG RACE'
                     from_email = settings.MAIL_SENDER
-                    text_content = 'TEST BG RACE'
+                    text_content = 'MAIL BG RACE'
                     html_content_FR = "<u> English version below </u> <p>Bonjour,</p> <p>Une demande de renseignement a été formulée depuis le site internet ARCHAMBAULT BY BG RACE via votre page de distributeur officiel de nos bateaux. </p> <p>Voici le contenu de la demande : </p> <p><b>IDENTITÉ </b>:"+ request.POST['name'] +"</p> <p> <b>MAIL </b>: "+ request.POST['mail'] +"</p> <p><b>TEL</b> :"+ request.POST['phone'] +"</p> <p><b>SUJET</b> : " + request.POST['sujet'] + "</p> <p> <b>MESSAGE</b> : "+ request.POST['content'] +"</p> <p>Au cas où vous ne pourriez pas répondre à cette demande, nous vous prions de contacter : <br /> Louis Burton ou Servane Escoffier <br /> Mail : info@bgrace <br /> Tel: +33(0)2 23 15 14 92 </p> <p> Merci, <br /><h4>L'équipe Archambault by BG RACE</h4>"
                     html_content_EN = "<p> <b>ENGLISH VERSION</b> </p><p>Dear Sir, Dear Madam, </p> <p> A customer has requested informations through your dedicated page on our Website. </p> <p> The following states the request : </p> <p> <b>NAME </b>:"+ request.POST['name'] +"</p> <p> <b>MAIL </b>: "+ request.POST['mail'] +"</p> <p><b>PHONE</b> : "+ request.POST['phone'] +"</p> <p> <b>SUBJECT: </b>" +request.POST['sujet']+ "</p> <p> <b>MESSAGE</b> : "+ request.POST['content'] +" </p> <p>Should it be impossible for you to answer the aformentioned, please contact : </p> <p>Servane ESCOFFIER or Louis BURTON <br /> Mail: info@bgrace.fr <br /> Phone number: +33 (0)2 23 15 14 92 <br /> Thank you, <br /> <h4>Archambault by BG Race’s team</h4> </p>"
                     html_content = html_content_FR + '<br /><br /> <br />' + html_content_EN

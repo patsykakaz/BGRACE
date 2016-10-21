@@ -118,7 +118,7 @@ class BoatDocumentation(models.Model):
 
 class BoatPalmares(models.Model):
     Boat = models.ForeignKey("Boat")
-    year = models.CharField(max_length=6, verbose_name='année')
+    year = models.CharField(max_length=20, verbose_name='année')
     course = models.CharField(max_length=255)
     resultat = models.CharField(max_length=255)
 
@@ -164,6 +164,7 @@ class Distributeur(Page):
 
     class Meta:
         verbose_name = 'DISTRIBUTEUR'
+
 
 
 
